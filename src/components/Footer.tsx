@@ -48,12 +48,16 @@ export default function Footer() {
     <footer className="px-8 py-4 text-sm flex items-center justify-between">
       <span className="text-muted">v0.0.1</span>
       <div className="flex gap-6 text-muted">
-        <span className="cursor-pointer" onClick={() => navigate(-1)}>
-          <span className="text-accent">h</span> prev
-        </span>
-        <span className="cursor-pointer" onClick={() => navigate(1)}>
-          <span className="text-accent">l</span> next
-        </span>
+        {routes.includes(pathname) && (
+          <>
+            <span className="cursor-pointer" onClick={() => navigate(-1)}>
+              <span className="text-accent">h</span> prev
+            </span>
+            <span className="cursor-pointer" onClick={() => navigate(1)}>
+              <span className="text-accent">l</span> next
+            </span>
+          </>
+        )}
         <span className="cursor-pointer" onClick={toggleTheme}>
           <span className="text-accent">t</span> theme
         </span>

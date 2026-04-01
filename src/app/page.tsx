@@ -16,7 +16,7 @@ export default function About() {
             href="https://datafruit.ai"
             target="_blank"
             rel="noopener noreferrer"
-            className="underline decoration-muted hover:text-accent transition-colors"
+            className="underline decoration-muted hover:text-accent"
           >
             Datafruit
           </a>
