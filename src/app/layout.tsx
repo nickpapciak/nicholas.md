@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
+import RandomFavicon from "@/components/RandomFavicon";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,13 +28,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="min-h-screen flex flex-col font-mono">
+        <RandomFavicon />
         <Nav />
         <main className="flex-1 flex items-center justify-center px-8">
           {children}
         </main>
-        <footer className="px-8 py-4 text-muted text-sm">
-          v0.0.1
-        </footer>
+        <Footer />
       </body>
     </html>
   );

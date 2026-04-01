@@ -7,14 +7,27 @@
   --muted: #6F6E69;
 }
 
+[data-theme="dark"] {
+  --bg: #1C1B1A;
+  --fg: #CECDC3;
+  --accent: #DA702C;
+  --muted: #878580;
+}
+
 @theme inline {
-  --color-bg: var(--bg);
-  --color-fg: var(--fg);
   --color-accent: var(--accent);
   --color-muted: var(--muted);
+  --color-fg: var(--fg);
+  --color-bg: var(--bg);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+/* Ensure theme colors work dynamically */
+.text-accent { color: var(--accent) !important; }
+.text-muted { color: var(--muted) !important; }
+.text-fg { color: var(--fg) !important; }
+.text-bg { color: var(--bg) !important; }
 
 body {
   background: var(--bg);
@@ -23,7 +36,15 @@ body {
 
 a {
   text-decoration: none;
-  color: inherit;
+}
+
+.tab-activate {
+  animation: tab-bold 0.3s ease-out;
+}
+
+@keyframes tab-bold {
+  0% { font-weight: 700; }
+  100% { font-weight: 400; }
 }
 
 .marquee-track {

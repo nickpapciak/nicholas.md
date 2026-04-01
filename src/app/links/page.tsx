@@ -1,8 +1,8 @@
 const links = [
   {
     label: "Website",
-    value: "nick.papciak.dev",
-    href: "https://nick.papciak.dev",
+    value: "nicholas.md",
+    href: "https://nicholas.md",
   },
   {
     label: "X/Twitter",
