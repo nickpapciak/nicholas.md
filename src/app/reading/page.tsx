@@ -142,6 +142,12 @@ const shelves: { label: string; books: Book[] }[] = [
         icon: <Path size={18} />,
       },
       {
+        title: "The Sun Also Rises",
+        author: "Ernest Hemingway",
+        className: "bg-[#4a3728] text-[#FFFCF0]",
+        icon: <Sun size={18} />,
+      },
+      {
         title: "Brave New World",
         author: "Aldous Huxley",
         className: "bg-[#2d4a3e] text-[#FFFCF0]",
