@@ -69,10 +69,30 @@ a {
 }
 
 /* Blog post typography */
+.writing-content h1 {
+  font-weight: 700;
+  font-size: 1.25em;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
 .writing-content h2 {
   font-weight: 600;
   margin-top: 2rem;
   margin-bottom: 0.75rem;
+}
+
+.writing-content h3 {
+  font-weight: 500;
+  font-style: italic;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.writing-content hr {
+  border: none;
+  border-top: 1px solid color-mix(in srgb, var(--fg) 12%, var(--bg));
+  margin: 2.5rem 0;
 }
 
 .writing-content p {
