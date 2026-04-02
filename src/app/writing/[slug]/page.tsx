@@ -13,8 +13,9 @@ function compileTypst(filePath: string): string {
   });
   let svg = compiler.svg({ mainFilePath: filePath });
 
-  // Make text color inherit from CSS for theme support
+  // Make colors inherit from CSS for theme support
   svg = svg.replaceAll('fill="#000"', 'fill="currentColor"');
+  // Proof box fill — handled by CSS class below
 
   // Make SVG responsive
   svg = svg.replace(

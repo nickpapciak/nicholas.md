@@ -5,6 +5,7 @@
   --fg: #100F0F;
   --accent: #DA702C;
   --muted: #6F6E69;
+  --proof-bg: #F0EDDE;
 }
 
 [data-theme="dark"] {
@@ -12,6 +13,7 @@
   --fg: #CECDC3;
   --accent: #DA702C;
   --muted: #878580;
+  --proof-bg: #2A2926;
 }
 
 @theme inline {
@@ -209,5 +211,9 @@ a {
   display: block;
   max-width: 500px;
   margin: 1.5rem auto;
+}
+
+.typst-render path[fill="#f0edde"] {
+  fill: var(--proof-bg) !important;
 }
 
