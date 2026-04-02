@@ -2,28 +2,8 @@
 // date: 2025-06-09
 // description: Sketching & the JL-Lemma
 
-#set page(width: 480pt, height: auto, margin: (x: 0pt, top: 0pt, bottom: 8pt))
-#set text(size: 13pt)
-#set par(justify: true, leading: 0.65em)
-#set heading(numbering: none)
-#show heading.where(level: 1): set text(size: 13pt, weight: 600)
-#show heading.where(level: 1): it => { v(12pt); it; v(4pt) }
-
-#import "@preview/ctheorems:1.1.3": *
-#show: thmrules.with(qed-symbol: $square.filled$)
-
-#let accent = rgb("#DA702C")
-
-#let theorem = thmplain("theorem", "Theorem", titlefmt: strong)
-#let definition = thmplain("definition", "Definition", titlefmt: strong)
-#let remark = thmplain("remark", "Remark", titlefmt: strong)
-#let proof(body) = block(
-  width: 100%,
-  fill: rgb("#F0EDDE"),
-  inset: 12pt,
-  radius: 4pt,
-  [*Proof.* #body #h(1fr) $square.filled$]
-)
+#import "../template.typ": *
+#show: post
 
 It's extremely common in computer science to be dealing with very high-dimensional vectors. A natural question is can we _sketch_, or reduce the dimensionality, of these vectors while still maintaining the larger structure of the data. A common application of this is clustering, where we cluster datapoints based on their distances to other data. For this kind of application, we need to be able to maintain the pairwise distances between any two datapoints.
 

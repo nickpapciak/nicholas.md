@@ -2,28 +2,8 @@
 // date: 2025-05-11
 // description: A reference sheet for Shifrin's Multivariable Mathematics
 
-#set page(width: 480pt, height: auto, margin: (x: 0pt, top: 0pt, bottom: 8pt))
-#set text(size: 13pt)
-#set par(justify: true, leading: 0.65em)
-#set heading(numbering: none)
-#show heading.where(level: 1): set text(size: 13pt, weight: 600)
-#show heading.where(level: 1): it => { v(12pt); it; v(4pt) }
-
-#import "@preview/ctheorems:1.1.3": *
-#show: thmrules.with(qed-symbol: $square.filled$)
-
-#let accent = rgb("#DA702C")
-
-#let theorem = thmplain("theorem", "Theorem", titlefmt: strong)
-#let definition = thmplain("definition", "Definition", titlefmt: strong)
-#let remark = thmplain("remark", "Remark", titlefmt: strong)
-#let proof(body) = block(
-  width: 100%,
-  fill: rgb("#F0EDDE"),
-  inset: 12pt,
-  radius: 4pt,
-  [*Proof.* #body #h(1fr) $square.filled$]
-)
+#import "../template.typ": *
+#show: post
 
 This is a big reference sheet/summary for Theodore Shifrin's Multivariable Mathematics textbook. Much of this was written while taking math 3510 as a freshman in college, which I still consider to be the hardest class I have ever taken. This is not meant to be used to learn from. Actually, this would be a terrible reference to learn from. Instead, it is meant to go over the major points and key ideas of the course, and some fun stuff, mostly as a reference to look back on when studying or after taking the course :)
 

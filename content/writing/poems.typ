@@ -2,12 +2,8 @@
 // date: 2025-08-12
 // description:
 
-#set page(width: 480pt, height: auto, margin: (x: 0pt, top: 0pt, bottom: 8pt))
-#set text(size: 13pt)
-#set par(justify: true, leading: 0.65em)
-#set heading(numbering: none)
-#show heading.where(level: 1): set text(size: 13pt, weight: 600)
-#show heading.where(level: 1): it => { v(12pt); it; v(4pt) }
+#import "../template.typ": *
+#show: post
 
 = What Kind of Man
 _by Kate Baer_
