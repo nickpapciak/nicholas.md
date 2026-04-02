@@ -7,8 +7,6 @@
 
 This is a big reference sheet/summary for Theodore Shifrin's Multivariable Mathematics textbook. Much of this was written while taking math 3510 as a freshman in college, which I still consider to be the hardest class I have ever taken. This is not meant to be used to learn from. Actually, this would be a terrible reference to learn from. Instead, it is meant to go over the major points and key ideas of the course, and some fun stuff, mostly as a reference to look back on when studying or after taking the course :)
 
-This is currently unfinished and I go and add stuff to it every once in a while to make it more complete.
-
 #line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
 
 = Chapter 1: Vectors and Matrices
