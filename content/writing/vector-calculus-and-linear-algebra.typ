@@ -11,6 +11,1021 @@ This is currently unfinished and I go and add stuff to it every once in a while 
 
 #line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
 
+= Chapter 1: Vectors and Matrices
+
+== 1.1 Vectors in $RR^n$
+
+A point in $RR^n$ is an ordered $n$-tuple $(x_1, dots, x_n)$. We associate to it the vector $bold(x) = vec(x_1, x_2, dots.v, x_n)$, visualized as the arrow from the origin to that point. The zero vector $bold(0)$ has all coordinates 0. Two points $A$ and $B$ determine the vector $arrow(A B) = bold(b) - bold(a)$.
+
+=== Length
+
+The _length_ (or _norm_) of $bold(x) in RR^n$ is
+
+$ norm(bold(x)) = sqrt(x_1^2 + x_2^2 + dots.c + x_n^2). $
+
+A _unit vector_ is one with $norm(bold(x)) = 1$. Any nonzero vector can be normalized: $bold(x) \/ norm(bold(x))$ is a unit vector in the direction of $bold(x)$.
+
+=== Scalar Multiplication and Vector Addition
+
+_Scalar multiplication:_ For $c in RR$ and $bold(x) in RR^n$, $c bold(x) = vec(c x_1, dots.v, c x_n)$. This stretches $bold(x)$ by $abs(c)$ and reverses direction if $c < 0$.
+
+Two vectors $bold(x)$ and $bold(y)$ are _parallel_ if one is a scalar multiple of the other.
+
+_Vector addition:_ $bold(x) + bold(y) = vec(x_1 + y_1, dots.v, x_n + y_n)$. Geometrically this is the parallelogram law: place the tail of $bold(y)$ at the head of $bold(x)$.
+
+=== Properties of Vector Arithmetic
+
+For all $bold(x), bold(y), bold(z) in RR^n$ and $c, d in RR$:
+
+1. $bold(x) + bold(y) = bold(y) + bold(x)$
+2. $(bold(x) + bold(y)) + bold(z) = bold(x) + (bold(y) + bold(z))$
+3. $bold(0) + bold(x) = bold(x)$
+4. $bold(x) + (-bold(x)) = bold(0)$
+5. $c(d bold(x)) = (c d) bold(x)$
+6. $c(bold(x) + bold(y)) = c bold(x) + c bold(y)$
+7. $(c + d) bold(x) = c bold(x) + d bold(x)$
+8. $1 bold(x) = bold(x)$
+
+== 1.2 Dot Product
+
+The dot product is the central algebraic tool for extracting geometry (angles, lengths, orthogonality) from coordinates.
+
+=== Definition
+
+For $bold(x), bold(y) in RR^n$, the _dot product_ is
+
+$ bold(x) dot bold(y) = x_1 y_1 + x_2 y_2 + dots.c + x_n y_n. $
+
+=== Properties
+
+1. $bold(x) dot bold(y) = bold(y) dot bold(x)$ (commutative)
+2. $bold(x) dot bold(x) = norm(bold(x))^2 >= 0$, with equality iff $bold(x) = bold(0)$
+3. $(c bold(x)) dot bold(y) = c(bold(x) dot bold(y))$ (homogeneity)
+4. $bold(x) dot (bold(y) + bold(z)) = bold(x) dot bold(y) + bold(x) dot bold(z)$ (distributive)
+
+It follows that $norm(bold(x) + bold(y))^2 = norm(bold(x))^2 + 2 bold(x) dot bold(y) + norm(bold(y))^2$.
+
+=== Orthogonality
+
+Vectors $bold(x)$ and $bold(y)$ are _orthogonal_ if $bold(x) dot bold(y) = 0$. In $RR^2$, this is equivalent to perpendicularity (by the Pythagorean theorem).
+
+=== Projection
+
+Given $bold(x), bold(y) in RR^n$ with $bold(y) != bold(0)$, we decompose $bold(x) = bold(x)^parallel + bold(x)^perp$ where $bold(x)^parallel$ is parallel to $bold(y)$ and $bold(x)^perp$ is orthogonal to $bold(y)$:
+
+$ bold(x)^parallel = "proj"_bold(y) bold(x) = frac(bold(x) dot bold(y), norm(bold(y))^2) bold(y), quad bold(x)^perp = bold(x) - frac(bold(x) dot bold(y), norm(bold(y))^2) bold(y). $
+
+The projection picks out the component of $bold(x)$ lying along $bold(y)$.
+
+=== Angle Between Vectors
+
+For nonzero $bold(x), bold(y) in RR^n$, the _angle_ $theta in [0, pi]$ between them satisfies
+
+$ cos theta = frac(bold(x) dot bold(y), norm(bold(x)) norm(bold(y))). $
+
+This is well-defined by the Cauchy-Schwarz inequality.
+
+=== Cauchy-Schwarz Inequality
+
+For any $bold(x), bold(y) in RR^n$,
+
+$ abs(bold(x) dot bold(y)) <= norm(bold(x)) norm(bold(y)), $
+
+with equality iff one vector is a scalar multiple of the other. This guarantees $abs(cos theta) <= 1$.
+
+=== Triangle Inequality
+
+For any $bold(x), bold(y) in RR^n$,
+
+$ norm(bold(x) + bold(y)) <= norm(bold(x)) + norm(bold(y)). $
+
+The length of a side of a triangle cannot exceed the sum of the other two.
+
+== 1.3 Subspaces of $RR^n$
+
+Subspaces are the "linear" subsets of $RR^n$ --- generalizations of lines and planes through the origin.
+
+=== Definition
+
+A set $V subset RR^n$ is a _subspace_ if:
+
+1. $bold(0) in V$
+2. $bold(v) in V$ and $c in RR$ implies $c bold(v) in V$ (closed under scalar multiplication)
+3. $bold(v), bold(w) in V$ implies $bold(v) + bold(w) in V$ (closed under addition)
+
+=== Key Examples
+
+- The trivial subspace ${bold(0)}$ and $RR^n$ itself.
+- A _line_ through the origin: ${t bold(u) : t in RR}$ for nonzero $bold(u)$.
+- A _plane_ through the origin: ${s bold(u) + t bold(v) : s, t in RR}$ for nonparallel $bold(u), bold(v)$.
+- A _hyperplane_: ${bold(x) in RR^n : bold(A) dot bold(x) = 0}$ for nonzero $bold(A) in RR^n$.
+
+=== Non-examples
+
+A subset that does not contain $bold(0)$, or that is not closed under scaling or addition, is not a subspace. For instance, ${bold(x) in RR^2 : x_2 = 2 x_1 + 1}$ fails all three criteria.
+
+=== Linear Combinations and Span
+
+A _linear combination_ of $bold(v)_1, dots, bold(v)_k in RR^n$ is any vector $c_1 bold(v)_1 + dots.c + c_k bold(v)_k$. The _span_ $"Span"(bold(v)_1, dots, bold(v)_k)$ is the set of all such combinations. The span of any collection of vectors is always a subspace. The standard basis vectors $bold(e)_1, dots, bold(e)_n$ span $RR^n$.
+
+Subspaces arise in two dual ways: _parametrically_ (as a span of vectors) or _implicitly_ (as the solution set of a homogeneous system $bold(A)_i dot bold(x) = 0$).
+
+=== Orthogonal Complement
+
+For a subspace $V subset RR^n$, its _orthogonal complement_ is
+
+$ V^perp = {bold(x) in RR^n : bold(x) dot bold(v) = 0 "for all" bold(v) in V}. $
+
+$V^perp$ is itself a subspace. If $bold(x)$ is orthogonal to each of $bold(v)_1, dots, bold(v)_k$, then $bold(x)$ is orthogonal to every vector in $"Span"(bold(v)_1, dots, bold(v)_k)$.
+
+Two subspaces $V$ and $W$ are _orthogonal subspaces_ if $bold(v) dot bold(w) = 0$ for every $bold(v) in V$ and $bold(w) in W$.
+
+== 1.4 Linear Transformations and Matrix Algebra
+
+=== Linear Transformations
+
+A function $T: RR^n -> RR^m$ is a _linear transformation_ if:
+
+1. $T(bold(u) + bold(v)) = T(bold(u)) + T(bold(v))$ for all $bold(u), bold(v) in RR^n$
+2. $T(c bold(v)) = c T(bold(v))$ for all $bold(v) in RR^n$ and $c in RR$
+
+The key consequence is that $T$ is completely determined by its values on the standard basis: $T(bold(x)) = x_1 T(bold(e)_1) + dots.c + x_n T(bold(e)_n)$.
+
+=== Standard Matrix
+
+To each linear map $T: RR^n -> RR^m$ we associate the $m times n$ _standard matrix_ $[T] = A$ whose $j$th column is $T(bold(e)_j)$. Then $T(bold(x)) = A bold(x)$.
+
+The product $A bold(x)$ can be interpreted two ways:
+- As a linear combination of the columns of $A$ weighted by the entries of $bold(x)$
+- As the vector of dot products of the rows of $A$ with $bold(x)$
+
+=== Examples of Linear Maps
+
+- _Dot product:_ $T(bold(x)) = bold(a) dot bold(x)$ gives $[T] = bold(a)^T$ (a $1 times n$ matrix)
+- _Rotation by $theta$:_ standard matrix $A_theta = mat(delim: "[", cos theta, -sin theta; sin theta, cos theta)$
+- _Reflection across $x_1 = x_2$:_ standard matrix $mat(delim: "[", 0, 1; 1, 0)$
+- _Projection onto a line:_ e.g. onto $"Span" vec(delim: "(", 1, 2)$ gives $mat(delim: "[", 1\/5, 2\/5; 2\/5, 4\/5)$
+
+=== Matrix Algebra
+
+Denote by $cal(M)_(m times n)$ the set of all $m times n$ matrices. Matrix addition and scalar multiplication are defined entry-by-entry and satisfy the same properties as vector arithmetic.
+
+A matrix is _square_ if $m = n$, _diagonal_ if $a_(i j) = 0$ for $i != j$, _upper triangular_ if $a_(i j) = 0$ for $i > j$, and _lower triangular_ if $a_(i j) = 0$ for $i < j$.
+
+=== Matrix Multiplication
+
+Matrix multiplication is defined to correspond to composition of linear maps. If $A$ is $m times n$ and $B$ is $n times p$, then $A B$ is $m times p$ with
+
+$ (A B)_(i j) = sum_(k=1)^n a_(i k) b_(k j) = ("row " i "of" A) dot ("col " j "of" B). $
+
+Equivalently, the $j$th column of $A B$ is $A$ times the $j$th column of $B$.
+
+=== Properties of Matrix Multiplication
+
+For compatible matrices $A, A', B, B', C$ and scalar $c$:
+
+1. $A I_n = A = I_m A$ (identity)
+2. $(A + A') B = A B + A' B$ and $A(B + B') = A B + A B'$ (distributive)
+3. $(c A) B = c(A B) = A(c B)$
+4. $(A B) C = A(B C)$ (associative)
+
+Matrix multiplication is _not_ commutative: in general $A B != B A$.
+
+=== Inverse Matrices
+
+An $n times n$ matrix $A$ is _invertible_ if there exists $A^(-1)$ with $A A^(-1) = A^(-1) A = I_n$. The inverse, when it exists, is unique and represents the inverse of the corresponding linear map.
+
+For a $2 times 2$ matrix $A = mat(delim: "[", a, b; c, d)$ with $a d - b c != 0$:
+
+$ A^(-1) = frac(1, a d - b c) mat(delim: "[", d, -b; -c, a). $
+
+If $A$ and $B$ are invertible, then $(A B)^(-1) = B^(-1) A^(-1)$ (reverse order). To undo two operations, undo them in reverse.
+
+For the rotation matrix: $A_theta^(-1) = A_(-theta)$.
+
+=== The Transpose
+
+The _transpose_ of an $m times n$ matrix $A$ is the $n times m$ matrix $A^T$ whose $i j$-entry is $a_(j i)$ (rows become columns). A square matrix is _symmetric_ if $A^T = A$ and _skew-symmetric_ if $A^T = -A$.
+
+=== Properties of Transpose
+
+1. $(A^T)^T = A$
+2. $(c A)^T = c A^T$
+3. $(A + A')^T = A^T + A'^T$
+4. $(A B)^T = B^T A^T$ (reverse order, like inverses)
+
+=== Dot Product and Transpose
+
+$ bold(x) dot bold(y) = bold(x)^T bold(y) $
+
+To move a matrix across the dot product, transpose it: for $A$ an $m times n$ matrix, $bold(x) in RR^n$, $bold(y) in RR^m$,
+
+$ A bold(x) dot bold(y) = bold(x) dot A^T bold(y). $
+
+== 1.5 Introduction to Determinants and the Cross Product
+
+=== Determinants in $RR^2$
+
+The signed area of the parallelogram spanned by $bold(x), bold(y) in RR^2$ is
+
+$ frak(D)(bold(x), bold(y)) = x_1 y_2 - x_2 y_1 = det mat(delim: "[", x_1, y_1; x_2, y_2). $
+
+The sign is positive when the turn from $bold(x)$ to $bold(y)$ is counterclockwise, negative when clockwise.
+
+=== Determinant Properties ($2 times 2$ and $3 times 3$)
+
+The determinant $frak(D)$ is the unique function of the column vectors satisfying:
+
+1. *Alternating:* swapping two columns negates the determinant. In particular, if two columns are equal, $frak(D) = 0$.
+2. *Multilinear:* scaling one column by $c$ scales $frak(D)$ by $c$; $frak(D)$ distributes over addition in each column.
+3. *Standard:* $frak(D)(bold(e)_1, dots, bold(e)_n) = 1$.
+
+=== Determinants in $RR^3$
+
+For $bold(x), bold(y), bold(z) in RR^3$:
+
+$ frak(D)(bold(x), bold(y), bold(z)) = x_1 mat(delim: "|", y_2, z_2; y_3, z_3) - x_2 mat(delim: "|", y_1, z_1; y_3, z_3) + x_3 mat(delim: "|", y_1, z_1; y_2, z_2). $
+
+This equals the signed volume of the parallelepiped spanned by $bold(x), bold(y), bold(z)$. It satisfies Properties 1--3 in all three slots.
+
+=== The Cross Product
+
+For $bold(x), bold(y) in RR^3$, the _cross product_ is
+
+$ bold(x) times bold(y) = vec(x_2 y_3 - x_3 y_2, x_3 y_1 - x_1 y_3, x_1 y_2 - x_2 y_1) = mat(delim: "|", bold(e)_1, x_1, y_1; bold(e)_2, x_2, y_2; bold(e)_3, x_3, y_3) $
+
+where the last expression is interpreted formally by cofactor expansion along the first column.
+
+=== Geometric Interpretation
+
+The cross product $bold(x) times bold(y)$ is the unique vector in $RR^3$ satisfying:
+
+1. $bold(x) times bold(y)$ is orthogonal to both $bold(x)$ and $bold(y)$
+2. $norm(bold(x) times bold(y))$ equals the area of the parallelogram spanned by $bold(x)$ and $bold(y)$
+3. $bold(x), bold(y), bold(x) times bold(y)$ form a right-handed system (positive signed volume)
+
+The relationship to the determinant is $bold(z) dot (bold(x) times bold(y)) = frak(D)(bold(z), bold(x), bold(y))$, so the $3 times 3$ determinant is the scalar triple product.
+
+=== Properties of the Cross Product
+
+1. $bold(x) times bold(y) = -bold(y) times bold(x)$ (anti-commutative)
+2. $bold(x) times (bold(y) + bold(z)) = bold(x) times bold(y) + bold(x) times bold(z)$ (distributive)
+3. $(c bold(x)) times bold(y) = c(bold(x) times bold(y))$
+4. $bold(x) times bold(x) = bold(0)$
+5. The cross product is _not_ associative
+
+=== Applications
+
+The normal vector to the plane $"Span"(bold(u), bold(v))$ in $RR^3$ is $bold(A) = bold(u) times bold(v)$, giving the implicit equation $bold(A) dot bold(x) = 0$. For the affine plane through $bold(x)_0$ parallel to $"Span"(bold(u), bold(v))$: $bold(A) dot (bold(x) - bold(x)_0) = 0$.
+
+#line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
+
+= Chapter 2: Functions, Limits, and Continuity
+
+== 2.1 Scalar- and Vector-Valued Functions
+
+=== Parametrized Curves
+
+A parametrized curve is a vector-valued function of a single variable $bold(f): (a, b) -> RR^n$, where we think of the independent variable $t$ as time and $bold(f)(t)$ as the position of a particle at time $t$.
+
+A line through $bold(x)_0$ with direction vector $bold(v)$ is parametrized by $bold(f)(t) = bold(x)_0 + t bold(v)$, $t in RR$.
+
+A circle of radius $a$ is parametrized by $bold(f)(t) = a vec(cos t, sin t)$, $0 <= t <= 2 pi$. More generally, the ellipse $x^2 / a^2 + y^2 / b^2 = 1$ is parametrized by $bold(f)(t) = vec(a cos t, b sin t)$.
+
+The cycloid -- the trajectory of a point on a rolling wheel of radius $a$ -- is parametrized by
+
+$ bold(f)(t) = a vec(t - sin t, 1 - cos t), quad t in RR $
+
+=== Scalar Functions of Several Variables
+
+A scalar-valued function of $n$ variables $f: RR^n -> RR$ can be visualized by its graph
+
+$ "graph"(f) = {vec(bold(x), f(bold(x))) : bold(x) in RR^n} subset RR^(n+1) $
+
+and by its level curves (or contour curves), which are the sets ${bold(x) : f(bold(x)) = c}$ for constants $c$.
+
+=== Vector Functions of Several Variables
+
+A vector-valued function $bold(f): RR^n -> RR^m$ can always be viewed as a collection of $m$ scalar functions:
+
+$ bold(f) vec(x_1, dots.v, x_n) = vec(f_1(bold(x)), dots.v, f_m(bold(x))) $
+
+Key examples include coordinate changes such as polar coordinates $bold(f) vec(r, theta) = vec(r cos theta, r sin theta)$ and parametrized surfaces.
+
+== 2.2 A Bit of Topology in $RR^n$
+
+=== Open Balls and Neighborhoods
+
+The ball of radius $delta$ centered at $bold(a)$ is $B(bold(a), delta) = {bold(x) in RR^n : norm(bold(x) - bold(a)) < delta}$, also called a neighborhood of $bold(a)$.
+
+The key relationship between balls and coordinates: if $|x_i - a_i| < delta / sqrt(n)$ for all $i$, then $bold(x) in B(bold(a), delta)$. Conversely, if $bold(x) in B(bold(a), delta)$, then $|x_i - a_i| < delta$ for all $i$.
+
+=== Open and Closed Sets
+
+A subset $U subset RR^n$ is *open* if for every $bold(a) in U$ there exists $delta > 0$ so that $B(bold(a), delta) subset U$. Intuitively, every point has "room to breathe" -- you can wiggle in any direction and stay inside the set.
+
+1. An open interval $(a, b) subset RR$ is open.
+2. An open rectangle $(a_1, b_1) times dots.c times (a_n, b_n) subset RR^n$ is open.
+3. $RR^n$ and $nothing$ are both open (and both closed).
+
+=== Sequences and Convergence
+
+A sequence ${bold(x)_k}$ in $RR^n$ converges to $bold(a)$ (written $bold(x)_k -> bold(a)$ or $lim_(k -> infinity) bold(x)_k = bold(a)$) if for all $epsilon > 0$, there exists $K in NN$ such that
+
+$ norm(bold(x)_k - bold(a)) < epsilon quad "whenever" k > K $
+
+Convergence in $RR^n$ is equivalent to componentwise convergence: $bold(x)_k -> bold(a)$ if and only if $x_(k,i) -> a_i$ for all $i = 1, dots, n$.
+
+=== Least Upper Bound Property
+
+Every nonempty subset $S subset RR$ that is bounded above has a least upper bound $sup S$. A bounded, nondecreasing sequence of real numbers converges to the supremum of its values.
+
+=== Closed Sets
+
+A subset $S subset RR^n$ is *closed* if whenever a convergent sequence ${bold(x)_k}$ with $bold(x)_k in S$ for all $k$ converges to $bold(a)$, then $bold(a) in S$. Equivalently, $S$ is closed if and only if its complement $RR^n - S$ is open. Closed sets are "limit-closed": they contain all their limit points.
+
+1. Closed intervals $[a, b]$, closed rectangles $[a_1, b_1] times dots.c times [a_n, b_n]$, and closed balls $overline(B)(bold(a), r) = {bold(x) in RR^n : norm(bold(x) - bold(a)) <= r}$ are closed.
+2. Most sets are neither open nor closed. For example, $(0, 1] subset RR$ is neither.
+3. Finite unions and finite intersections of open sets are open; finite unions and finite intersections of closed sets are closed.
+
+=== Closure, Interior, and Frontier
+
+The *closure* $overline(S)$ of $S subset RR^n$ is the smallest closed set containing $S$ -- equivalently, $S$ together with all limits of convergent sequences of points in $S$.
+
+A point $bold(a) in S$ is an *interior point* if some neighborhood of $bold(a)$ is contained in $S$. A point $bold(a) in RR^n$ is a *frontier point* of $S$ if every neighborhood of $bold(a)$ contains both points in $S$ and points not in $S$. The set of frontier points is always closed, and $overline(S) = S union {"frontier points of" S}$.
+
+=== Cauchy Sequences and Completeness
+
+A sequence ${bold(x)_k}$ is *Cauchy* if for all $epsilon > 0$ there exists $K in NN$ so that $norm(bold(x)_k - bold(x)_ell) < epsilon$ whenever $k, ell > K$. Every convergent sequence is Cauchy, and $RR^n$ is *complete*: every Cauchy sequence converges.
+
+Any sequence in a closed, bounded subset of $RR^n$ has a convergent subsequence (the Bolzano-Weierstrass property).
+
+== 2.3 Limits and Continuity
+
+=== Limits of Functions
+
+Let $U subset RR^n$ be open, containing a neighborhood of $bold(a)$ (except perhaps $bold(a)$ itself), and let $bold(f): U -> RR^m$. We say $lim_(bold(x) -> bold(a)) bold(f)(bold(x)) = bold(ell)$ if for every $epsilon > 0$ there exists $delta > 0$ so that
+
+$ norm(bold(f)(bold(x)) - bold(ell)) < epsilon quad "whenever" quad 0 < norm(bold(x) - bold(a)) < delta $
+
+The key subtlety in higher dimensions: $bold(x)$ can approach $bold(a)$ from infinitely many directions, not just from the left or right. To show a limit does not exist, it suffices to find two paths approaching $bold(a)$ along which the function approaches different values.
+
+=== Componentwise Limits
+
+$lim_(bold(x) -> bold(a)) bold(f)(bold(x)) = bold(ell)$ if and only if $lim_(bold(x) -> bold(a)) f_j (bold(x)) = ell_j$ for all $j = 1, dots, m$. This reduces vector-valued limits to scalar-valued limits.
+
+=== Limit Laws
+
+Suppose $lim_(bold(x) -> bold(a)) bold(f)(bold(x)) = bold(ell)$, $lim_(bold(x) -> bold(a)) bold(g)(bold(x)) = bold(m)$, and $lim_(bold(x) -> bold(a)) k(bold(x)) = c$. Then:
+
+1. $lim_(bold(x) -> bold(a)) (bold(f)(bold(x)) + bold(g)(bold(x))) = bold(ell) + bold(m)$
+2. $lim_(bold(x) -> bold(a)) bold(f)(bold(x)) dot bold(g)(bold(x)) = bold(ell) dot bold(m)$
+3. $lim_(bold(x) -> bold(a)) k(bold(x)) bold(f)(bold(x)) = c bold(ell)$
+
+=== Continuity
+
+Let $U subset RR^n$ be open and $bold(f): U -> RR^m$. Then $bold(f)$ is *continuous at* $bold(a)$ if $lim_(bold(x) -> bold(a)) bold(f)(bold(x)) = bold(f)(bold(a))$, i.e., for every $epsilon > 0$ there exists $delta > 0$ so that
+
+$ norm(bold(f)(bold(x)) - bold(f)(bold(a))) < epsilon quad "whenever" quad norm(bold(x) - bold(a)) < delta $
+
+We say $bold(f)$ is *continuous* if it is continuous at every point of its domain. Continuity means the limit equals the function value -- no jumps, no holes.
+
+=== Algebraic Properties
+
+If $bold(f), bold(g): U -> RR^m$ and $k: U -> RR$ are all continuous at $bold(a)$, then so are $bold(f) + bold(g)$, $bold(f) dot bold(g)$, and $k bold(f)$. Every linear map $T: RR^n -> RR^m$ is continuous.
+
+=== Topological Characterization
+
+$bold(f): U -> RR^m$ (with $U$ open) is continuous if and only if for every open set $V subset RR^m$, the preimage $bold(f)^(-1)(V) = {bold(x) in U : bold(f)(bold(x)) in V}$ is open. This is the "open preimage" characterization -- it is often the cleanest way to prove continuity results.
+
+=== Composition
+
+If $bold(g): W -> RR^n$ and $bold(f): U -> RR^m$ are continuous and the composition is defined (i.e., $bold(g)(bold(x)) in U$ for all $bold(x) in W$), then $bold(f) compose bold(g)$ is continuous. This follows immediately from the open preimage characterization.
+
+=== Sequential Characterization
+
+$bold(f)$ is continuous at $bold(a)$ if and only if for every sequence ${bold(x)_k}$ converging to $bold(a)$, the sequence ${bold(f)(bold(x)_k)}$ converges to $bold(f)(bold(a))$. This is often the most practical tool for proving a function is *not* continuous: find a sequence approaching $bold(a)$ whose images do not approach $bold(f)(bold(a))$.
+
+=== Closed Level Sets
+
+If $bold(f): RR^n -> RR^m$ is continuous, then for any $bold(c) in RR^m$, the level set $bold(f)^(-1)({bold(c)}) = {bold(x) in RR^n : bold(f)(bold(x)) = bold(c)}$ is a closed set. For example, the spheres ${bold(x) : norm(bold(x)) = r}$ are closed because $f(bold(x)) = norm(bold(x))^2$ is continuous.
+
+#line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
+
+= Chapter 3: The Derivative
+
+== 3.1 Partial Derivatives and Directional Derivatives
+
+=== Partial Derivatives
+
+Partial derivatives measure the rate of change of a function along coordinate axes, reducing multivariable problems to single-variable ones.
+
+For $U subset RR^n$ open, $bold(a) in U$, and $bold(f): U -> RR^m$, the $j^("th")$ partial derivative of $bold(f)$ at $bold(a)$ is
+
+$ frac(diff bold(f), diff x_j)(bold(a)) = lim_(t -> 0) frac(bold(f)(bold(a) + t bold(e)_j) - bold(f)(bold(a)), t), quad j = 1, dots, n $
+
+provided this limit exists. Alternative notation: $D_j f(bold(a))$.
+
+=== Directional Derivatives
+
+The directional derivative generalizes partial derivatives to arbitrary directions, not just coordinate axes.
+
+For $U subset RR^n$ open, $bold(a) in U$, and $bold(v) in RR^n$ nonzero, the directional derivative of $bold(f): U -> RR^m$ at $bold(a)$ in the direction $bold(v)$ is
+
+$ D_(bold(v)) bold(f)(bold(a)) = lim_(t -> 0) frac(bold(f)(bold(a) + t bold(v)) - bold(f)(bold(a)), t) $
+
+provided this limit exists. The $j^("th")$ partial derivative is just $D_(bold(e)_j) bold(f)(bold(a))$.
+
+The directional derivative depends on both the direction and magnitude of $bold(v)$: $D_(c bold(v)) bold(f)(bold(a)) = c D_(bold(v)) bold(f)(bold(a))$. Think of it as the rate of change perceived by an observer moving with instantaneous velocity $bold(v)$.
+
+== 3.2 Differentiability
+
+=== The Total Derivative
+
+Having partial derivatives (or even all directional derivatives) does not guarantee continuity. The correct notion of differentiability requires a best linear approximation.
+
+For $U subset RR^n$ open, $bold(a) in U$, a function $bold(f): U -> RR^m$ is _differentiable_ at $bold(a)$ if there is a linear map $D bold(f)(bold(a)): RR^n -> RR^m$ such that
+
+$ lim_(bold(h) -> bold(0)) frac(bold(f)(bold(a) + bold(h)) - bold(f)(bold(a)) - D bold(f)(bold(a)) bold(h), norm(bold(h))) = bold(0) $
+
+This says the error in the linear approximation $bold(f)(bold(a)) + D bold(f)(bold(a))(bold(x) - bold(a))$ vanishes faster than $norm(bold(x) - bold(a))$. The graph of $bold(g)(bold(x)) = bold(f)(bold(a)) + D bold(f)(bold(a))(bold(x) - bold(a))$ is the tangent plane at $bold(a)$.
+
+The derivative $D bold(f)(bold(a))$, if it exists, is unique. A vector-valued function $bold(f)$ is differentiable at $bold(a)$ iff each of its coordinate functions $f_i$ is differentiable at $bold(a)$.
+
+=== The Jacobian Matrix
+
+If $bold(f): RR^n -> RR^m$ is differentiable at $bold(a)$, then the partial derivatives $frac(diff f_i, diff x_j)(bold(a))$ exist and the matrix representation of $D bold(f)(bold(a))$ is
+
+$ [D bold(f)(bold(a))] = mat(delim: "[", frac(diff f_i, diff x_j)(bold(a))) $
+
+This $m times n$ matrix is the _Jacobian matrix_ of $bold(f)$ at $bold(a)$.
+
+=== Key Results
+
+1. *Differentiable implies continuous:* If $bold(f): RR^n -> RR^m$ is differentiable at $bold(a)$, then $bold(f)$ is continuous at $bold(a)$.
+
+2. *Directional derivatives from the total derivative:* When $bold(f)$ is differentiable at $bold(a)$, for any $bold(v) in RR^n$, $D_(bold(v)) bold(f)(bold(a)) = D bold(f)(bold(a)) bold(v)$.
+
+3. *$cal(C)^1$ implies differentiable:* If $bold(f): U -> RR^m$ has continuous partial derivatives (i.e., $bold(f)$ is $cal(C)^1$), then $bold(f)$ is differentiable. This is the practical workhorse: to show differentiability, just check that partials exist and are continuous.
+
+The converse of (3) is false: a function can be differentiable everywhere yet not $cal(C)^1$ (e.g. $f(x) = x^2 sin(1\/x)$).
+
+== 3.3 Differentiation Rules
+
+=== Operator Norm
+
+The norm of a linear map $T: RR^n -> RR^m$ is $norm(T) = max_(norm(bold(x)) = 1) norm(T(bold(x)))$. This gives the bound $norm(T(bold(x))) <= norm(T) norm(bold(x))$.
+
+=== Sum, Product, and Dot Product Rules
+
+Suppose $U subset RR^n$ is open, $bold(f), bold(g): U -> RR^m$, $k: U -> RR$, and all are differentiable at $bold(a) in U$.
+
+1. *Sum rule:* $D(bold(f) + bold(g))(bold(a)) = D bold(f)(bold(a)) + D bold(g)(bold(a))$
+
+2. *Scalar-vector product rule:* $D(k bold(f))(bold(a)) bold(v) = (D k(bold(a)) bold(v)) bold(f)(bold(a)) + k(bold(a)) D bold(f)(bold(a)) bold(v)$
+
+3. *Dot product rule:* $D(bold(f) dot bold(g))(bold(a)) bold(v) = (D bold(f)(bold(a)) bold(v)) dot bold(g)(bold(a)) + bold(f)(bold(a)) dot (D bold(g)(bold(a)) bold(v))$
+
+=== The Chain Rule
+
+The chain rule is the fundamental tool for computing derivatives of compositions. It says: differentiate the outer function at the output, then compose with the derivative of the inner function.
+
+If $bold(g): RR^n -> RR^m$ is differentiable at $bold(a)$ and $bold(f): RR^m -> RR^ell$ is differentiable at $bold(g)(bold(a))$, then $bold(f) compose bold(g)$ is differentiable at $bold(a)$ and
+
+$ D(bold(f) compose bold(g))(bold(a)) = D bold(f)(bold(g)(bold(a))) compose D bold(g)(bold(a)) $
+
+In matrix form, the Jacobian of the composition is the product of Jacobians. This also gives an alternative derivation of $D_(bold(v)) bold(f)(bold(a)) = D bold(f)(bold(a)) bold(v)$: take $bold(g)(t) = bold(a) + t bold(v)$ and apply the chain rule to $bold(f) compose bold(g)$.
+
+More generally, if $bold(g)$ is any differentiable function with $bold(g)(0) = bold(a)$ and $bold(g)'(0) = bold(v)$, then $D_(bold(v)) bold(f)(bold(a)) = (bold(f) compose bold(g))'(0)$.
+
+== 3.4 The Gradient
+
+=== Definition and Directional Derivative Formula
+
+The gradient recasts the derivative of a scalar function as a vector, enabling geometric interpretation via dot products.
+
+If $f: RR^n -> RR$ is differentiable at $bold(a)$, the _gradient_ of $f$ at $bold(a)$ is
+
+$ nabla f(bold(a)) = (D f(bold(a)))^top = vec(frac(diff f, diff x_1)(bold(a)), frac(diff f, diff x_2)(bold(a)), dots.v, frac(diff f, diff x_n)(bold(a))) $
+
+The directional derivative is then a dot product:
+
+$ D_(bold(v)) f(bold(a)) = nabla f(bold(a)) dot bold(v) $
+
+=== Steepest Ascent
+
+By Cauchy-Schwarz, the gradient points in the direction of greatest increase, and its magnitude is the maximum rate of change.
+
+If $f$ is differentiable at $bold(a)$ and $nabla f(bold(a)) != bold(0)$, then
+
+$ norm(nabla f(bold(a))) = max_(norm(bold(v)) = 1) D_(bold(v)) f(bold(a)) $
+
+with the maximum attained when $bold(v) = nabla f(bold(a)) \/ norm(nabla f(bold(a)))$.
+
+=== Normal to Level Sets
+
+If $f: RR^n -> RR$ is differentiable at $bold(a)$ and $nabla f(bold(a)) != bold(0)$, then $nabla f(bold(a))$ is orthogonal to the level set ${bold(x) in RR^n : f(bold(x)) = f(bold(a))}$ at $bold(a)$. This is immediate: any tangent vector $bold(v)$ to the level set satisfies $D_(bold(v)) f(bold(a)) = 0$, so $nabla f(bold(a)) dot bold(v) = 0$.
+
+For a level surface $f(bold(x)) = c$ in $RR^3$, the tangent plane at $bold(a)$ has equation $nabla f(bold(a)) dot (bold(x) - bold(a)) = 0$.
+
+== 3.5 Curves
+
+=== Velocity, Speed, and Acceleration
+
+A parametrized curve $bold(g): (a, b) -> RR^n$ describes the trajectory of a particle. $bold(g)'(t)$ is the _velocity vector_, $norm(bold(g)'(t))$ is the _speed_, and $bold(g)''(t)$ is the _acceleration vector_.
+
+Newton's second law: $bold(F) = m bold(a)$.
+
+If $bold(g)(t)$ has constant length (lies on a sphere centered at the origin), then $bold(g)(t) dot bold(g)'(t) = 0$ for all $t$. Intuitively, the velocity must be tangent to the sphere.
+
+=== Central Force Fields
+
+A force field $bold(F)(bold(x)) = psi(bold(x)) bold(x)$ is called _central_. The gravitational field of a point mass $M$ at the origin is $bold(F)(bold(x)) = -(G M) / norm(bold(x))^3 bold(x)$.
+
+In a central force field, the trajectory of any particle lies in a plane. If the trajectory is not a line, the position vector sweeps out area at a constant rate: $cal(A)'(t) = 1/2 norm(bold(g)(t) times bold(g)'(t)) = "const"$ (Kepler's second law generalized).
+
+=== Arclength
+
+For a piecewise-$cal(C)^1$ curve $bold(g): [a, b] -> RR^n$, the arclength is
+
+$ ell(bold(g)) = integral_a^b norm(bold(g)'(t)) dif t $
+
+The arclength function $s(t) = integral_a^t norm(bold(g)'(u)) dif u$ satisfies $s'(t) = norm(bold(g)'(t))$ (the speed).
+
+=== Arclength Parametrization and Curvature
+
+A curve is _arclength-parametrized_ if $norm(bold(g)'(s)) = 1$ for all $s$. In this case, the velocity $bold(g)'(s) = bold(T)(s)$ is the _unit tangent vector_.
+
+The _curvature_ is $kappa(s) = norm(bold(T)'(s))$. The _principal normal_ is $bold(N)(s) = bold(T)'(s) \/ norm(bold(T)'(s))$ (defined when $kappa != 0$). Since $norm(bold(T)) = 1$, we have $bold(T) dot bold(T)' = 0$, so $bold(N) perp bold(T)$.
+
+1. A line has $kappa = 0$ everywhere, and conversely.
+2. A circle of radius $a$ has constant curvature $kappa = 1\/a$ and centripetal principal normal.
+
+=== Acceleration Decomposition
+
+For a general (not arclength) parametrization with speed $upsilon(t) = norm(bold(g)'(t))$:
+
+$ bold(g)'(t) = upsilon(t) bold(T)(s(t)) $
+
+$ bold(g)''(t) = upsilon'(t) bold(T)(s(t)) + kappa(s(t)) upsilon(t)^2 bold(N)(s(t)) $
+
+Acceleration decomposes into a tangential component $upsilon'$ (change of speed) and a normal component $kappa upsilon^2$ (centripetal, from change of direction).
+
+=== Frenet Formulas (in $RR^3$)
+
+For an arclength-parametrized curve in $RR^3$ with $kappa > 0$, define the _binormal_ $bold(B) = bold(T) times bold(N)$. The _torsion_ $tau$ is defined by $bold(B)' = -tau bold(N)$. The curve is planar iff $tau = 0$ everywhere.
+
+$ bold(T)' = kappa bold(N), quad bold(N)' = -kappa bold(T) + tau bold(B), quad bold(B)' = -tau bold(N) $
+
+== 3.6 Higher-Order Partial Derivatives
+
+=== $cal(C)^k$ Functions
+
+The second-order partial derivatives of $bold(f)$ are
+
+$ frac(diff^2 bold(f), diff x_j diff x_i) = frac(diff, diff x_j)(frac(diff bold(f), diff x_i)) $
+
+$bold(f)$ is $cal(C)^k$ on $U$ if all partial derivatives up to order $k$ exist and are continuous on $U$. $bold(f)$ is $cal(C)^infinity$ (smooth) if all partial derivatives of all orders exist.
+
+=== Equality of Mixed Partials (Clairaut's Theorem)
+
+For smooth enough functions, the order of differentiation doesn't matter.
+
+If $U subset RR^n$ is open and $bold(f): U -> RR^m$ is $cal(C)^2$, then for any $i, j$
+
+$ frac(diff^2 bold(f), diff x_i diff x_j) = frac(diff^2 bold(f), diff x_j diff x_i) $
+
+The $cal(C)^2$ hypothesis is necessary: there exist functions with $frac(diff^2 f, diff x diff y)(bold(0)) != frac(diff^2 f, diff y diff x)(bold(0))$ that fail to be $cal(C)^2$.
+
+=== Important PDEs
+
+1. *Laplacian and harmonic functions:* $nabla^2 f = frac(diff^2 f, diff x_1^2) + dots.c + frac(diff^2 f, diff x_n^2)$. A function satisfying $nabla^2 f = 0$ is _harmonic_.
+
+2. *Wave equation:* $frac(diff^2 f, diff t^2) = c^2 frac(diff^2 f, diff x^2)$. General solution via change of variables: $f(x, t) = phi(x + c t) + psi(x - c t)$, the superposition of two traveling waves.
+
+3. *Minimal surface equation:* $(1 + (frac(diff f, diff y))^2) frac(diff^2 f, diff x^2) - 2 frac(diff f, diff x) frac(diff f, diff y) frac(diff^2 f, diff x diff y) + (1 + (frac(diff f, diff x))^2) frac(diff^2 f, diff y^2) = 0$
+
+#line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
+
+= Chapter 4: Implicit and Explicit Solutions of Linear Systems
+
+Any subspace $V subset RR^n$ has two representations: _explicit_ (parametric), where $V = "Span"(bold(v)_1, dots, bold(v)_k)$, and _implicit_, where $V = {bold(x) in RR^n : A bold(x) = bold(0)}$ for some matrix $A$. This chapter develops the machinery to pass between them.
+
+== 4.1 Gaussian Elimination and the Theory of Linear Systems
+
+=== Setup
+
+A system of $m$ linear equations in $n$ unknowns can be written $A bold(x) = bold(b)$ with $A in cal(M)_(m times n)$. Geometrically, a solution is a point in the intersection of $m$ hyperplanes with normal vectors $bold(A)_1, dots, bold(A)_m$ (the row vectors of $A$).
+
+The _augmented matrix_ $[A | bold(b)]$ encodes the full system. Three _elementary row operations_ preserve the solution set:
+
+1. Interchange two rows
+2. Multiply a row by a nonzero scalar
+3. Add a scalar multiple of one row to another
+
+=== Echelon Form
+
+A matrix is in _echelon form_ if (1) leading entries move strictly to the right in successive rows, (2) all entries below each leading entry are 0, and (3) all zero rows are at the bottom.
+
+A matrix is in _reduced echelon form_ if additionally (4) every leading entry is 1, and (5) all entries _above_ each leading entry are 0.
+
+The columns containing leading entries (pivots) are _pivot columns_; the corresponding variables are _pivot variables_. The remaining variables are _free variables_. From reduced echelon form, each pivot variable is expressed in terms of the free variables, yielding the general solution in _standard form_: a particular solution plus a linear combination of vectors, one per free variable.
+
+_Uniqueness of reduced echelon form._ Any two echelon forms of the same matrix have pivots in the same positions. As a consequence, the reduced echelon form of a matrix is unique.
+
+=== Consistency
+
+A solution of $A bold(x) = bold(b)$ gives $bold(b)$ as a linear combination of the columns of $A$: $bold(b) = x_1 bold(a)_1 + dots.c + x_n bold(a)_n$. The system is _consistent_ if at least one solution exists, _inconsistent_ otherwise. From the echelon form $[U | bold(c)]$ of $[A | bold(b)]$: the system is inconsistent exactly when some row of $U$ is zero but the corresponding entry of $bold(c)$ is nonzero.
+
+The _rank_ of a matrix is the number of pivots in its echelon form.
+
+$A bold(x) = bold(b)$ is consistent if and only if $"rank"[A | bold(b)] = "rank"(A)$. In particular, if $"rank"(A) = m$, then $A bold(x) = bold(b)$ is consistent for every $bold(b) in RR^m$.
+
+=== Existence and Uniqueness
+
+The general solution of the inhomogeneous system $A bold(x) = bold(b)$ (when consistent) and the associated homogeneous system $A bold(x) = bold(0)$ are related: if $bold(u)_1$ is any particular solution of $A bold(x) = bold(b)$, then every solution has the form $bold(u) = bold(u)_1 + bold(v)$ where $bold(v)$ solves $A bold(x) = bold(0)$. The solution set of $A bold(x) = bold(b)$ is a translate of the solution set of $A bold(x) = bold(0)$.
+
+A consistent system $A bold(x) = bold(b)$ has a unique solution if and only if $A bold(x) = bold(0)$ has only the trivial solution, which happens exactly when $"rank"(A) = n$.
+
+An $n times n$ matrix is _nonsingular_ if $"rank"(A) = n$, and _singular_ if $"rank"(A) < n$.
+
+The following are equivalent for an $n times n$ matrix $A$:
+
+1. $A$ is nonsingular
+2. $A bold(x) = bold(0)$ has only the trivial solution
+3. For every $bold(b) in RR^n$, the equation $A bold(x) = bold(b)$ has a unique solution
+
+== 4.2 Elementary Matrices and Calculating Inverse Matrices
+
+=== Elementary Matrices
+
+Each elementary row operation corresponds to left-multiplication by an _elementary matrix_, obtained by performing that operation on the identity:
+
+1. Swapping rows $i$ and $j$: the matrix $E$ with rows $i, j$ of $I$ interchanged
+2. Scaling row $i$ by $c != 0$: $I$ with its $(i,i)$-entry replaced by $c$
+3. Adding $c$ times row $i$ to row $j$: $I$ with a $c$ in position $(j,i)$
+
+Every elementary matrix is invertible, and its inverse is again an elementary matrix. Reducing $A$ to echelon form $U$ gives $E A = U$ where $E$ is the product of the corresponding elementary matrices.
+
+=== Inverse Matrices
+
+The inverse of an $n times n$ matrix $A$ is the matrix $A^(-1)$ with $A A^(-1) = A^(-1) A = I_n$. If $A$ is invertible, the unique solution of $A bold(x) = bold(b)$ is $bold(x) = A^(-1) bold(b)$.
+
+An $n times n$ matrix is nonsingular if and only if it is invertible. To compute $A^(-1)$, row-reduce the augmented matrix $[A | I_n]$; if $A$ is nonsingular, the result is $[I_n | A^(-1)]$.
+
+If $A$ and $B$ are $n times n$ matrices with $B A = I_n$, then $B = A^(-1)$ and $A = B^(-1)$. In particular, a one-sided inverse of a square matrix is automatically a two-sided inverse.
+
+For a $2 times 2$ matrix: $mat(delim: "[", a, b; c, d)^(-1) = frac(1, a d - b c) mat(delim: "[", d, -b; -c, a)$, valid when $a d - b c != 0$.
+
+=== Properties of Invertible Matrices
+
+1. $(A B)^(-1) = B^(-1) A^(-1)$
+2. $(A^T)^(-1) = (A^(-1))^T$
+3. $A^T A$ is invertible when $A$ is invertible
+4. Every invertible matrix is a product of elementary matrices
+5. A nonsquare matrix cannot have both a left and a right inverse
+
+== 4.3 Linear Independence, Basis, and Dimension
+
+=== Linear Independence
+
+The set ${bold(v)_1, dots, bold(v)_k}$ is _linearly independent_ if
+
+$ c_1 bold(v)_1 + c_2 bold(v)_2 + dots.c + c_k bold(v)_k = bold(0) ==> c_1 = c_2 = dots.c = c_k = 0. $
+
+Equivalently, no vector in the set can be written as a linear combination of the others. The set is _linearly dependent_ if there exists a nontrivial linear combination equaling $bold(0)$.
+
+Linear independence is equivalent to uniqueness of representation: every $bold(v) in "Span"(bold(v)_1, dots, bold(v)_k)$ can be written uniquely as a linear combination of $bold(v)_1, dots, bold(v)_k$ if and only if the set is linearly independent.
+
+If ${bold(v)_1, dots, bold(v)_k}$ is linearly independent, then ${bold(v)_1, dots, bold(v)_k, bold(x)}$ is linearly independent if and only if $bold(x) in.not "Span"(bold(v)_1, dots, bold(v)_k)$.
+
+=== Basis
+
+A set ${bold(v)_1, dots, bold(v)_k}$ is a _basis_ for a subspace $V subset RR^n$ if (i) it spans $V$, and (ii) it is linearly independent. Equivalently, every vector in $V$ can be written _uniquely_ as a linear combination of the basis vectors. Given such a representation $bold(v) = c_1 bold(v)_1 + dots.c + c_k bold(v)_k$, the scalars $c_1, dots, c_k$ are the _coordinates_ of $bold(v)$ with respect to the basis.
+
+An $n times n$ matrix $A$ is nonsingular if and only if its column vectors form a basis for $RR^n$.
+
+Every nontrivial subspace $V subset RR^n$ has a basis. More than $n$ vectors in $RR^n$ must be linearly dependent.
+
+=== Dimension
+
+Any two bases for a subspace $V$ have the same number of elements. The _dimension_ of $V$, written $dim V$, is this common number. By convention, $dim{bold(0)} = 0$.
+
+Key dimension facts:
+
+1. If $W subset V$ are subspaces with $dim V = dim W$, then $V = W$
+2. In a $k$-dimensional subspace, any $k$ spanning vectors are linearly independent, and any $k$ linearly independent vectors span the subspace
+3. Any linearly independent set in $V$ can be extended to a basis for $V$
+4. $dim(U + V) = dim U + dim V - dim(U sect V)$
+
+=== Abstract Vector Spaces
+
+A _vector space_ is a set with addition and scalar multiplication satisfying the usual axioms. Notable examples: $cal(M)_(m times n) tilde.eq RR^(m n)$, function spaces $cal(F)(U)$, the polynomial space $cal(P)_k$ (dimension $k + 1$), and $RR^infinity$. A vector space is _finite-dimensional_ if it has a finite basis, _infinite-dimensional_ otherwise.
+
+== 4.4 The Four Fundamental Subspaces
+
+=== Definitions
+
+For an $m times n$ matrix $A$ with column vectors $bold(a)_1, dots, bold(a)_n in RR^m$ and row vectors $bold(A)_1, dots, bold(A)_m in RR^n$:
+
+- *Column space:* $bold(C)(A) = "Span"(bold(a)_1, dots, bold(a)_n) subset RR^m$. Equivalently, $bold(C)(A) = {bold(b) in RR^m : A bold(x) = bold(b) "is consistent"}$ --- the image of the linear map $bold(x) |-> A bold(x)$.
+
+- *Row space:* $bold(R)(A) = "Span"(bold(A)_1, dots, bold(A)_m) subset RR^n$.
+
+- *Nullspace:* $bold(N)(A) = {bold(x) in RR^n : A bold(x) = bold(0)} subset RR^n$ --- the kernel of the linear map.
+
+- *Left nullspace:* $bold(N)(A^T) = {bold(x) in RR^m : A^T bold(x) = bold(0)} subset RR^m$.
+
+=== Orthogonality Relations
+
+$ bold(N)(A) = bold(R)(A)^perp, quad bold(N)(A^T) = bold(C)(A)^perp $
+
+The nullspace and row space are orthogonal complements in $RR^n$; the left nullspace and column space are orthogonal complements in $RR^m$.
+
+=== Computing Bases (Theorem 4.4)
+
+Let $A$ be $m times n$ with echelon form $U$, reduced echelon form $R$, and $E A = U$.
+
+1. *$bold(R)(A)$*: the nonzero rows of $U$ (or $R$)
+2. *$bold(N)(A)$*: the standard-form vectors from the general solution of $R bold(x) = bold(0)$ (set each free variable to 1 in turn, others to 0)
+3. *$bold(C)(A)$*: the _pivot columns of the original matrix_ $A$ (not of $R$)
+4. *$bold(N)(A^T)$*: the rows of $E$ corresponding to zero rows of $U$ (equivalently, the constraint equations for $bold(C)(A)$)
+
+=== Dimension Relations
+
+For an $m times n$ matrix $A$ of rank $r$:
+
+1. $dim bold(R)(A) = dim bold(C)(A) = r$
+2. $dim bold(N)(A) = n - r$
+3. $dim bold(N)(A^T) = m - r$
+
+The _Nullity-Rank Theorem_: $"null"(A) + "rank"(A) = n$.
+
+=== Orthogonal Complements
+
+For any $k$-dimensional subspace $V subset RR^n$: $dim V^perp = n - k$ and $(V^perp)^perp = V$.
+
+The four fundamental subspaces decompose their ambient spaces into orthogonal complements:
+
+1. $bold(R)(A)^perp = bold(N)(A)$ and $bold(N)(A)^perp = bold(R)(A)$ in $RR^n$
+2. $bold(C)(A)^perp = bold(N)(A^T)$ and $bold(N)(A^T)^perp = bold(C)(A)$ in $RR^m$
+
+The linear map $bold(x) |-> A bold(x)$ restricts to a bijection $bold(R)(A) -> bold(C)(A)$. For each $bold(b) in bold(C)(A)$, there is a unique $bold(x) in bold(R)(A)$ with $A bold(x) = bold(b)$, and this $bold(x)$ is the solution of minimal length.
+
+== 4.5 The Nonlinear Case: Introduction to Manifolds
+
+=== Implicit Function Theorem (Simple Case)
+
+The Implicit Function Theorem is the nonlinear analogue of solving for pivot variables in terms of free variables.
+
+Suppose $U subset RR^n$ is open, $bold(a) in U$, $f: U -> RR$ is $cal(C)^1$, $f(bold(a)) = 0$, and $frac(diff f, diff x_n)(bold(a)) != 0$. Then there exist neighborhoods $V$ of $(a_1, dots, a_(n-1))$ and $W$ of $a_n$ and a $cal(C)^1$ function $phi: V -> W$ such that
+
+$ f(bold(x)) = 0, quad (x_1, dots, x_(n-1)) in V, quad x_n in W quad <==> quad x_n = phi(x_1, dots, x_(n-1)). $
+
+Near $bold(a)$, the level set $f = 0$ is a graph over the $x_1 dots.c x_(n-1)$-plane. More generally, if $D f(bold(a)) != bold(0)$, some partial derivative is nonzero, and we can solve for the corresponding variable locally.
+
+=== Implicit Differentiation
+
+Under the hypotheses of the Implicit Function Theorem, the partial derivatives of $phi$ are given by
+
+$ frac(diff phi, diff x_j)(overline(bold(a))) = - frac(frac(diff f, diff x_j)(bold(a)), frac(diff f, diff x_n)(bold(a))) $
+
+for $j = 1, dots, n - 1$, where $overline(bold(a)) = (a_1, dots, a_(n-1))$. This is derived by differentiating the identity $f(overline(bold(x)), phi(overline(bold(x)))) = 0$ via the chain rule.
+
+=== Tangent Hyperplanes
+
+If $f: U -> RR$ is $cal(C)^1$, $D f(bold(a)) != bold(0)$, and $f(bold(a)) = c$, then the tangent hyperplane to the level set $M = f^(-1)({c})$ at $bold(a)$ is
+
+$ T_(bold(a)) M = {bold(x) in RR^n : D f(bold(a))(bold(x) - bold(a)) = 0} $
+
+That is, $nabla f(bold(a))$ is normal to $M$ at $bold(a)$.
+
+=== Manifolds
+
+A subset $M subset RR^n$ is an $(n - m)$-dimensional _manifold_ if each point has a neighborhood that is a $cal(C)^1$ graph over some $(n - m)$-dimensional coordinate plane.
+
+If $bold(F): RR^n -> RR^m$ is $cal(C)^1$ and $"rank"(D bold(F)(bold(x))) = m$ at every point $bold(x)$ of the level set $M = bold(F)^(-1)({bold(0)})$, then $M$ is an $(n - m)$-dimensional manifold. The tangent plane at $bold(a) in M$ is $T_(bold(a)) M = bold(a) + bold(N)(D bold(F)(bold(a)))$, the translate of the nullspace of the derivative.
+
+#line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
+
+= Chapter 5: Extremum Problems
+
+== 5.1 Compactness and the Maximum Value Theorem
+
+=== Compactness
+
+A set $S subset RR^n$ is _bounded_ if there exists $M$ so that $norm(bold(x)) <= M$ for all $bold(x) in S$. A set $S subset RR^n$ is _compact_ if it is both closed and bounded. Compact sets are the multivariable analogue of closed intervals --- they are precisely the sets on which continuous functions are guaranteed to achieve their extreme values.
+
+Every sequence of points in a compact set $A subset RR^n$ has a convergent subsequence whose limit lies in $A$.
+
+=== Maximum Value Theorem
+
+If $X subset RR^n$ is compact and $f: X -> RR$ is continuous, then $f$ attains its maximum and minimum values. That is, there exist $bold(y), bold(z) in X$ so that
+
+$ f(bold(y)) <= f(bold(x)) <= f(bold(z)) quad "for all" bold(x) in X. $
+
+=== Operator Norm
+
+The norm (operator norm) of a linear map $T: RR^n -> RR^m$ is defined as
+
+$ norm(T) = max_(norm(bold(x)) = 1) norm(T(bold(x))). $
+
+This maximum exists by the Maximum Value Theorem applied to the compact unit sphere $S^(n-1)$.
+
+1. $norm(T(bold(x))) <= norm(T) norm(bold(x))$ for all $bold(x) in RR^n$
+2. $norm(c T) = abs(c) norm(T)$
+3. $norm(S + T) <= norm(S) + norm(T)$
+4. $norm(S compose T) <= norm(S) norm(T)$
+5. If $A$ is diagonal with entries $d_1, dots, d_n$, then $norm(A) = max(abs(d_1), dots, abs(d_n))$
+
+=== Uniform Continuity Theorem
+
+If $X subset RR^n$ is compact and $f: X -> RR$ is continuous, then $f$ is uniformly continuous: given $epsilon > 0$, there exists $delta > 0$ so that $abs(f(bold(x)) - f(bold(y))) < epsilon$ whenever $norm(bold(x) - bold(y)) < delta$ with $bold(x), bold(y) in X$.
+
+== 5.2 Maximum/Minimum Problems
+
+=== Definitions
+
+Let $X subset RR^n$ and $bold(a) in X$. The function $f: X -> RR$ has a _global maximum_ at $bold(a)$ if $f(bold(x)) <= f(bold(a))$ for all $bold(x) in X$, and a _local maximum_ at $bold(a)$ if $f(bold(x)) <= f(bold(a))$ for all $bold(x) in B(bold(a), delta) sect X$ for some $delta > 0$. Analogous definitions hold for _global minimum_ and _local minimum_. An _extremum_ is either a local max or local min.
+
+=== Critical Points
+
+If $bold(a)$ is an extremum of $f$ and $f$ is differentiable at $bold(a)$, then $D f(bold(a)) = bold(0)$ (equivalently, $nabla f(bold(a)) = bold(0)$). Geometrically, the tangent plane to the graph at an extremum must be horizontal --- all directional derivatives vanish.
+
+A point $bold(a)$ where $D f(bold(a)) = bold(0)$ is called a _critical point_. A critical point where $f$ takes both larger and smaller values nearby is a _saddle point_.
+
+=== Strategy for Compact Domains
+
+On a compact region $X$: the Maximum Value Theorem guarantees global extrema exist. Find all critical points in the interior of $X$, then examine $f$ on the boundary of $X$. Compare all values to determine global max and min.
+
+On non-compact domains: one must argue separately that a global extremum exists, typically by showing $f(bold(x)) -> infinity$ as $bold(x)$ approaches the boundary or infinity, and then trapping the minimum inside a compact subset.
+
+== 5.3 Quadratic Forms and the Second Derivative Test
+
+=== Taylor Expansion with Remainder
+
+The Hessian matrix of a $cal(C)^2$ function $f$ at $bold(a)$ is the symmetric matrix
+
+$ "Hess"(f)(bold(a)) = [frac(diff^2 f, diff x_i diff x_j)(bold(a))]_(i j). $
+
+The associated quadratic form $cal(H)_(f, bold(a)): RR^n -> RR$ is defined by $cal(H)_(f, bold(a))(bold(h)) = bold(h)^top "Hess"(f)(bold(a)) bold(h)$. If $f: B(bold(a), r) -> RR$ is $cal(C)^2$, then for all $bold(h)$ with $norm(bold(h)) < r$,
+
+$ f(bold(a) + bold(h)) = f(bold(a)) + D f(bold(a)) bold(h) + 1/2 cal(H)_(f, bold(a) + xi bold(h))(bold(h)) quad "for some" 0 < xi < 1. $
+
+Consequently,
+
+$ f(bold(a) + bold(h)) = f(bold(a)) + D f(bold(a)) bold(h) + 1/2 cal(H)_(f, bold(a))(bold(h)) + epsilon(bold(h)), $
+
+where $epsilon(bold(h)) / norm(bold(h))^2 -> 0$ as $bold(h) -> bold(0)$. At a critical point ($D f(bold(a)) = bold(0)$), the linear term vanishes and the Hessian quadratic form controls the local behavior of $f$.
+
+=== Classifying Quadratic Forms
+
+Given a symmetric $n times n$ matrix $A$, the quadratic form $cal(Q)(bold(x)) = bold(x)^top A bold(x)$ is
+
+- _positive definite_ if $cal(Q)(bold(x)) > 0$ for all $bold(x) != bold(0)$
+- _negative definite_ if $cal(Q)(bold(x)) < 0$ for all $bold(x) != bold(0)$
+- _positive semidefinite_ if $cal(Q)(bold(x)) >= 0$ for all $bold(x)$ and $= 0$ for some $bold(x) != bold(0)$
+- _negative semidefinite_ if $cal(Q)(bold(x)) <= 0$ for all $bold(x)$ and $= 0$ for some $bold(x) != bold(0)$
+- _indefinite_ if $cal(Q)$ takes both positive and negative values
+
+=== Second Derivative Test
+
+If $f$ is $cal(C)^2$ near a critical point $bold(a)$:
+
+1. $cal(H)_(f, bold(a))$ positive definite $==>$ $bold(a)$ is a local minimum
+2. $cal(H)_(f, bold(a))$ negative definite $==>$ $bold(a)$ is a local maximum
+3. $cal(H)_(f, bold(a))$ indefinite $==>$ $bold(a)$ is a saddle point
+4. $cal(H)_(f, bold(a))$ semidefinite $==>$ inconclusive
+
+=== Two-Variable Test
+
+When $n = 2$, write $"Hess"(f)(bold(a)) = mat(delim: "[", A, B; B, C)$. Then
+
+1. $A C - B^2 > 0$ and $A > 0$ $==>$ local minimum
+2. $A C - B^2 > 0$ and $A < 0$ $==>$ local maximum
+3. $A C - B^2 < 0$ $==>$ saddle point
+4. $A C - B^2 = 0$ $==>$ inconclusive
+
+The quantity $A C - B^2 = det("Hess"(f)(bold(a)))$.
+
+=== $L D L^top$ Decomposition
+
+Completing the square in a quadratic form corresponds to factoring the symmetric matrix as $A = L D L^top$, where $L$ is lower triangular with 1's on the diagonal and $D$ is diagonal. The signs of the diagonal entries of $D$ determine the definiteness of $cal(Q)$:
+
+1. All $d_i > 0$ $==>$ positive definite
+2. All $d_i < 0$ $==>$ negative definite
+3. All $d_i >= 0$ with at least one $d_i = 0$ $==>$ positive semidefinite
+4. All $d_i <= 0$ with at least one $d_i = 0$ $==>$ negative semidefinite
+5. $d_i$ of mixed sign $==>$ indefinite
+
+The key identity is $cal(Q)(bold(x)) = bold(x)^top L D L^top bold(x) = sum_(i=1)^n d_i y_i^2$ where $bold(y) = L^top bold(x)$.
+
+== 5.4 Lagrange Multipliers
+
+=== Constrained Extrema
+
+The method of Lagrange multipliers handles optimization of a function subject to constraints. The geometric idea: at a constrained extremum, the level set of $f$ must be tangent to the constraint surface, so their normal vectors are parallel.
+
+Let $U subset RR^n$ be open, $f: U -> RR$ differentiable, and $bold(g): U -> RR^m$ be $cal(C)^1$ with $bold(g)(bold(a)) = bold(0)$. Suppose $"rank"(D bold(g)(bold(a))) = m$. If $bold(a)$ is a local extremum of $f$ subject to the constraint $bold(g) = bold(0)$, then there exist scalars $lambda_1, dots, lambda_m$ (the _Lagrange multipliers_) so that
+
+$ D f(bold(a)) = lambda_1 D g_1(bold(a)) + dots.c + lambda_m D g_m(bold(a)). $
+
+Equivalently, $nabla f(bold(a))$ is a linear combination of $nabla g_1(bold(a)), dots, nabla g_m(bold(a))$.
+
+This is a necessary condition, not sufficient --- constrained saddle points can also satisfy these equations.
+
+=== Procedure
+
+To optimize $f$ subject to $m$ constraints $g_1 = dots.c = g_m = 0$ in $n$ variables ($n > m$):
+
+1. Solve the system of $n + m$ equations in $n + m$ unknowns: $D f = lambda_1 D g_1 + dots.c + lambda_m D g_m$ together with $g_1 = dots.c = g_m = 0$.
+2. Evaluate $f$ at all constrained critical points and compare.
+3. If the constraint surface is compact, the Maximum Value Theorem guarantees global extrema among the critical points.
+
+=== Eigenvalues via Lagrange Multipliers
+
+Optimizing $cal(Q)(bold(x)) = bold(x)^top A bold(x)$ subject to $norm(bold(x))^2 = 1$ for a symmetric matrix $A$ yields the condition $A bold(x) = lambda bold(x)$. Solutions are _eigenvectors_ of $A$ and the multipliers $lambda$ are the _eigenvalues_. By compactness of $S^(n-1)$, every symmetric matrix has at least two eigenvalues (a max and a min of $cal(Q)$ on the sphere).
+
+=== Constrained Second Derivative Test
+
+At a constrained critical point $bold(a)$ with $D f(bold(a)) = lambda D g(bold(a))$ and $D g(bold(a)) != bold(0)$: $bold(a)$ is a constrained local max (resp. min) if the Hessian of $f - lambda g$ restricted to the tangent space $T_(bold(a)) M$ is negative (resp. positive) definite.
+
+== 5.5 Projections, Least Squares, and Inner Product Spaces
+
+=== Projection onto a Subspace
+
+The _projection_ of $bold(b) in RR^n$ onto a subspace $V subset RR^n$ is the unique $bold(p) in V$ such that $bold(b) - bold(p) in V^perp$. We write $bold(p) = "proj"_V bold(b)$.
+
+If $A$ is the $n times m$ matrix whose columns form a basis for $V$ (with $"rank"(A) = m$), then the projection is $bold(p) = P bold(b)$ where the projection matrix is
+
+$ P = A(A^top A)^(-1) A^top. $
+
+Properties of $P$:
+
+1. $P^top = P$ (symmetric)
+2. $P^2 = P$ (idempotent)
+3. $I - P$ is the projection matrix onto $V^perp$
+
+=== Least Squares
+
+Given an inconsistent system $A bold(x) = bold(b)$ where $A$ is $n times m$ with $"rank"(A) = m$, the _least squares solution_ $overline(bold(x))$ minimizes $norm(A bold(x) - bold(b))^2$. It is the unique solution to the _normal equations_
+
+$ (A^top A) overline(bold(x)) = A^top bold(b). $
+
+The projection of $bold(b)$ onto $bold(C)(A)$ is then $bold(p) = A overline(bold(x))$.
+
+When $V = bold(N)(B)$ is given implicitly, projection via Lagrange multipliers gives
+
+$ "proj"_(bold(N)(B)) bold(b) = bold(b) - B^top (B B^top)^(-1) B bold(b) = (I - B^top (B B^top)^(-1) B) bold(b). $
+
+=== Data Fitting
+
+To find the least squares line $y = a x + b$ through data points $(x_1, y_1), dots, (x_m, y_m)$: solve the normal equations for the system $A mat(delim: "[", a; b) = bold(y)$ where $A = mat(delim: "[", x_1, 1; dots.v, dots.v; x_m, 1)$. The error vector $bold(epsilon) = bold(y) - A overline(bold(x))$ always satisfies $epsilon_1 + dots.c + epsilon_m = 0$ --- the algebraic sum of the errors vanishes.
+
+=== Orthogonal Bases
+
+A set ${bold(v)_1, dots, bold(v)_k}$ is an _orthogonal set_ if $bold(v)_i dot bold(v)_j = 0$ for $i != j$. An _orthogonal basis_ for a subspace $V$ is a basis that is also an orthogonal set. An _orthonormal basis_ additionally has $norm(bold(v)_i) = 1$ for each $i$.
+
+The key property: ${bold(v)_1, dots, bold(v)_k}$ is an orthogonal basis for $V$ if and only if every $bold(x) in V$ satisfies
+
+$ bold(x) = sum_(i=1)^k frac(bold(x) dot bold(v)_i, norm(bold(v)_i)^2) bold(v)_i. $
+
+For any $bold(b) in RR^n$, projection onto $V$ with an orthogonal basis is
+
+$ "proj"_V bold(b) = sum_(i=1)^k frac(bold(b) dot bold(v)_i, norm(bold(v)_i)^2) bold(v)_i. $
+
+This is equivalent to the matrix formula $P = sum_(i=1)^k frac(1, norm(bold(v)_i)^2) bold(v)_i bold(v)_i^top$.
+
+=== Gram-Schmidt Process
+
+Given a basis ${bold(v)_1, dots, bold(v)_k}$ for $V$, the Gram-Schmidt process produces an orthogonal basis ${bold(w)_1, dots, bold(w)_k}$ by iteratively subtracting projections:
+
+$ bold(w)_1 &= bold(v)_1 \
+bold(w)_(j+1) &= bold(v)_(j+1) - sum_(i=1)^j frac(bold(v)_(j+1) dot bold(w)_i, norm(bold(w)_i)^2) bold(w)_i. $
+
+Each $bold(w)_(j+1)$ is the component of $bold(v)_(j+1)$ orthogonal to $"Span"(bold(w)_1, dots, bold(w)_j)$. Normalizing gives an orthonormal basis: $bold(q)_i = bold(w)_i / norm(bold(w)_i)$.
+
+=== Inner Product Spaces
+
+A real vector space $V$ is an _inner product space_ if there is a pairing $chevron.l bold(u), bold(v) chevron.r in RR$ satisfying:
+
+1. $chevron.l bold(v), bold(u) chevron.r = chevron.l bold(u), bold(v) chevron.r$ (symmetry)
+2. $chevron.l c bold(u), bold(v) chevron.r = c chevron.l bold(u), bold(v) chevron.r$ (linearity in first argument)
+3. $chevron.l bold(u) + bold(v), bold(w) chevron.r = chevron.l bold(u), bold(w) chevron.r + chevron.l bold(v), bold(w) chevron.r$ (additivity)
+4. $chevron.l bold(v), bold(v) chevron.r >= 0$ with equality iff $bold(v) = bold(0)$ (positive definiteness)
+
+Length, orthogonality, Cauchy-Schwarz, projections, and Gram-Schmidt all generalize to inner product spaces. Two important instances: $cal(C)^0([a, b])$ with $chevron.l f, g chevron.r = integral_a^b f(t) g(t) dif t$, and $cal(M)_(n times n)$ with $chevron.l A, B chevron.r = "tr"(A^top B)$.
+
+=== Lagrange Interpolation
+
+Given $k + 1$ points $(t_1, b_1), dots, (t_(k+1), b_(k+1))$ with distinct $t_i$, there exists a unique polynomial $p in cal(P)_k$ passing through them. The Lagrange basis polynomials are
+
+$ p_i(t) = product_(j != i) frac(t - t_j, t_i - t_j), $
+
+satisfying $p_i(t_j) = cases(1 &"if" i = j, 0 &"if" i != j)$, and the interpolating polynomial is $p = b_1 p_1 + dots.c + b_(k+1) p_(k+1)$.
+
+#line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
+
 = Chapter 6: Solving Nonlinear Problems
 
 == 6.1 The Contraction Mapping Principle
@@ -515,3 +1530,383 @@ In $RR^3$ (where $bold(x) = (x, y, z)$), the area 2-form gives the _surface area
 $ sigma = n_1(bold(x)) dif y and.big dif z + n_2(bold(x)) dif z and.big dif x + n_3(bold(x)) dif x and.big dif y $
 
 This works because $bold(n)$ is a unit vector, so the area of the plane spanned by tangent vectors $bold(u)$ and $bold(v)$ is given by $det mat(delim: "[", arrow.t, arrow.t, arrow.t; bold(n), bold(u), bold(v); arrow.b, arrow.b, arrow.b)$.
+
+== 8.5 Stokes's Theorem
+
+=== Manifolds with Boundary
+
+A subset $M subset RR^n$ is a $k$-dimensional _manifold with boundary_ if for each $bold(p) in M$ there is an open set $W subset RR^n$ containing $bold(p)$ and a parameterization $bold(g): U -> RR^n$ with $bold(g)(U) = W sect M$, where $U$ is an open subset either of $RR^k$ or of $RR^k_+ = {bold(u) in RR^k : u_k >= 0}$. A point $bold(p) = bold(g)(bold(u))$ is a _boundary point_ ($bold(p) in diff M$) if $bold(u) in diff RR^k_+ = {bold(u) in RR^k : u_k = 0}$.
+
+An _orientation_ on $M$ is a continuously varying notion of positively oriented basis for each tangent space. $M$ is orientable iff we can cover it by coordinate charts $bold(g)$ so that ${frac(diff bold(g), diff u_1), dots, frac(diff bold(g), diff u_k)}$ is always a positive basis, equivalently iff there is a nowhere-vanishing $k$-form on $M$. The oriented _volume form_ $sigma$ assigns to each $k$-tuple of tangent vectors the signed volume of the parallelepiped they span.
+
+=== Partition of Unity
+
+To define integration on a manifold that requires multiple coordinate charts, we use a partition of unity. If $M subset RR^n$ is a compact $k$-dimensional manifold with boundary, then there exist smooth functions $rho_1, dots, rho_N$ on $M$ such that
+
+1. $0 <= rho_i <= 1$ for all $i$
+2. Each $rho_i$ is zero outside some coordinate ball
+3. $sum_(i=1)^N rho_i = 1$
+
+The construction uses bump functions: $psi(bold(x)) = j(3 - 2 norm(bold(x)))$ where $j$ is built from the smooth function $h(x) = cases(e^(-1 slash x) & x > 0, 0 & x <= 0)$. This $psi$ equals 1 on $norm(bold(x)) <= 1$ and 0 on $norm(bold(x)) >= 3 slash 2$.
+
+With a partition of unity, we define $integral_M omega = sum_(i=1)^N integral_(B(bold(0), 2)) bold(g)_i^* (rho_i omega)$, where the $bold(g)_i$ are orientation-preserving parameterizations.
+
+=== Boundary Orientation
+
+The boundary $diff M$ inherits an orientation from $M$: the outward-pointing normal $bold(n)$ followed by a positively oriented basis for $T_(bold(p)) diff M$ should be a positively oriented basis for $T_(bold(p)) M$. The boundary orientation on $diff RR^k_+$ is $(-1)^k$ times the usual orientation on $RR^(k-1)$.
+
+=== Stokes's Theorem
+
+The crowning result of the chapter, generalizing the Fundamental Theorem of Calculus, the FTC for line integrals, and Green's Theorem.
+
+If $M$ is a compact, oriented $k$-dimensional manifold with boundary, and $omega$ is a smooth $(k-1)$-form on $M$, then
+
+$ integral_(diff M) omega = integral_M dif omega $
+
+where $diff M$ carries the boundary orientation.
+
+*Immediate consequences:*
+
+1. The classical FTC is the case $k = 1$: $integral_a^b f'(t) dif t = f(b) - f(a)$
+2. The FTC for line integrals (Proposition 8.3) is the case of a 0-form on a curve
+3. Green's Theorem (Corollary 8.3) is the case $k = 2$ in $RR^2$
+4. If $M$ is a compact oriented manifold _without_ boundary, then $integral_M dif eta = 0$ for any $(k-1)$-form $eta$ (i.e. exact forms integrate to zero on closed manifolds)
+
+=== Key Example: the Solid Angle Form
+
+The 2-form on $RR^3 - {bold(0)}$ given by
+
+$ omega = frac(x dif y and.big dif z + y dif z and.big dif x + z dif x and.big dif y, (x^2 + y^2 + z^2)^(3 slash 2)) $
+
+satisfies $dif omega = 0$ (it is closed) and on any sphere of radius $a$ centered at the origin, $omega$ equals $1 slash a^2$ times the area 2-form. Its integral over any sphere centered at the origin (with outward normal) is $4 pi$. For any compact 3-manifold with boundary $Omega subset RR^3$ with $bold(0) in.not diff Omega$,
+
+$ integral_(diff Omega) omega = cases(4 pi & bold(0) in Omega, 0 & bold(0) in.not Omega) $
+
+This is the 3-dimensional analogue of the winding number. The case $bold(0) in.not Omega$ follows directly from Stokes since $dif omega = 0$. The case $bold(0) in Omega$ is proved by excising a small ball around the origin and applying Stokes to the resulting region.
+
+== 8.6 Applications to Physics
+
+=== The Dictionary in $RR^3$
+
+Differential forms and classical vector calculus operations correspond as follows. Given a vector field $bold(F) = mat(delim: "[", F_1; F_2; F_3)$ in $RR^3$:
+
+*Gradient ($dif$ on 0-forms):* For a function $f$, the 1-form $dif f = sum frac(diff f, diff x_i) dif x_i$ corresponds to the vector field $nabla f$.
+
+*Curl ($dif$ on 1-forms):* Given $omega = F_1 dif x_1 + F_2 dif x_2 + F_3 dif x_3$,
+
+$ dif omega = lr((frac(diff F_3, diff x_2) - frac(diff F_2, diff x_3))) dif x_2 and.big dif x_3 + lr((frac(diff F_1, diff x_3) - frac(diff F_3, diff x_1))) dif x_3 and.big dif x_1 + lr((frac(diff F_2, diff x_1) - frac(diff F_1, diff x_2))) dif x_1 and.big dif x_2 $
+
+This is the 2-form corresponding to $"curl" bold(F) = nabla times bold(F)$.
+
+*Divergence ($dif$ on 2-forms):* Given $omega = F_1 dif x_2 and.big dif x_3 + F_2 dif x_3 and.big dif x_1 + F_3 dif x_1 and.big dif x_2$,
+
+$ dif omega = lr((frac(diff F_1, diff x_1) + frac(diff F_2, diff x_2) + frac(diff F_3, diff x_3))) dif x_1 and.big dif x_2 and.big dif x_3 $
+
+This is the 3-form corresponding to $"div" bold(F) = nabla dot bold(F)$.
+
+*Summary table:*
+
+1. $dif$ on 0-forms $<-->$ gradient ($nabla f$)
+2. $dif$ on 1-forms $<-->$ curl ($nabla times bold(F)$)
+3. $dif$ on 2-forms $<-->$ divergence ($nabla dot bold(F)$)
+
+The identity $dif^2 = 0$ translates to both $"curl"(nabla f) = bold(0)$ and $"div"("curl" bold(F)) = 0$.
+
+=== Classical Stokes's Theorem
+
+If $S subset RR^3$ is a compact, oriented surface with boundary, and $bold(F)$ is a smooth vector field on $S$, then
+
+$ integral_(diff S) bold(F) dot bold(T) dif s = integral_S "curl" bold(F) dot bold(n) dif S $
+
+The left side is the circulation of $bold(F)$ around $diff S$; the right is the flux of $"curl" bold(F)$ through $S$. Physically, $"curl" bold(F)(bold(a)) dot bold(n) = lim_(r -> 0^+) frac(1, pi r^2) integral_(diff D_r) bold(F) dot bold(T) dif s$ measures the tendency of a small paddlewheel at $bold(a)$ to spin: it spins fastest when the axle points in the direction of $"curl" bold(F)$.
+
+=== Classical Divergence Theorem (Gauss's Theorem)
+
+If $bold(F)$ is a smooth vector field on a compact 3-manifold with boundary $Omega subset RR^3$, then
+
+$ integral_(diff Omega) bold(F) dot bold(n) dif S = integral_Omega "div" bold(F) dif V $
+
+The divergence has a limiting interpretation: $"div" bold(F)(bold(a)) = lim_(r -> 0^+) frac(1, frac(4, 3) pi r^3) integral_(diff overline(B)(bold(a), r)) bold(F) dot bold(n) dif S$. Positive divergence means $bold(a)$ is a _source_ (net outward flux); negative means a _sink_.
+
+=== Gauss's Law
+
+The gravitational field of a mass $M$ at the origin is $bold(F) = -G M frac(bold(x), norm(bold(x))^3)$. This field satisfies $"div" bold(F) = 0$ away from the origin. For any compact surface $S = diff Omega$ (with $bold(0) in.not S$),
+
+$ integral_S bold(F) dot bold(n) dif S = cases(-4 pi G M & bold(0) in Omega, 0 & "otherwise") $
+
+More generally, for a continuous mass distribution with density $delta$,
+
+$ integral_S bold(F) dot bold(n) dif S = -4 pi G integral_Omega delta dif V = -4 pi G M $
+
+where $M$ is the total mass inside $S$. This defines $"div" bold(F)(bold(x)) = -4 pi G delta(bold(x))$.
+
+An application: the gravitational field _inside_ a uniform ball of mass $M$ and radius $R$ is $bold(F)(bold(x)) = -frac(G M, R^3) bold(x)$, which is linear in $norm(bold(x))$. A frictionless tunnel through such a ball produces simple harmonic motion with travel time $T = pi sqrt(R slash g) approx 42$ minutes, independent of the tunnel's orientation.
+
+=== Maxwell's Equations
+
+Let $bold(E)$ be the electric field, $bold(B)$ the magnetic field, $rho$ the charge density, and $bold(J)$ the current density, all on $RR^3 times RR$ (space-time). Maxwell's equations (ignoring constants) are:
+
+1. Gauss's law: $"div" bold(E) = rho$
+2. No magnetic monopoles: $"div" bold(B) = 0$
+3. Faraday's law: $"curl" bold(E) = -frac(diff bold(B), diff t)$
+4. Ampere's law: $"curl" bold(B) = frac(diff bold(E), diff t) + bold(J)$
+
+These can be encoded as two differential forms on $RR^4$. Defining
+
+$ omega = (E_1 dif x + E_2 dif y + E_3 dif z) and.big dif t + (B_1 dif y and.big dif z + B_2 dif z and.big dif x + B_3 dif x and.big dif y) $
+
+we have $dif omega = 0$ iff $"div" bold(B) = 0$ and $"curl" bold(E) + frac(diff bold(B), diff t) = bold(0)$ (Faraday + no monopoles).
+
+Defining $theta = ast.op omega$ (the Hodge star in Lorentz metric), Gauss's law and Ampere's law are encoded by $dif theta$ being a specific 3-form involving $bold(J)$ and $rho$ (or $dif theta = 0$ in vacuum).
+
+Since $dif omega = 0$ on $RR^4$, there exists a 1-form $alpha$ with $dif alpha = omega$ (a _potential_). After a gauge transformation (adding $dif f$ for an appropriate $f$), solving Maxwell's equations reduces to solving the inhomogeneous wave equations $nabla^2 bold(A) - frac(diff^2 bold(A), diff t^2) = -bold(J)$ and $nabla^2 phi - frac(diff^2 phi, diff t^2) = -rho$.
+
+== 8.7 Applications to Topology
+
+=== The Fundamental Lemma
+
+The key ingredient: there exists an $n$-form $omega$ on the unit sphere $S^n = {bold(x) in RR^(n+1) : norm(bold(x)) = 1}$ with nonzero integral. Explicitly, the volume form
+
+$ omega = sum_(i=1)^(n+1) (-1)^(i-1) x_i dif x_1 and.big dots.c and.big hat(dif x_i) and.big dots.c and.big dif x_(n+1) $
+
+works (where $hat(dif x_i)$ means $dif x_i$ is omitted).
+
+=== No Retraction Theorem
+
+Let $D^(n+1) = {bold(x) in RR^(n+1) : norm(bold(x)) <= 1}$ be the closed unit ball. There is no smooth function $bold(r): D^(n+1) -> S^n$ with $bold(r)(bold(x)) = bold(x)$ for all $bold(x) in S^n$.
+
+The proof is a clean application of Stokes and pullback: if such $bold(r)$ existed, then $integral_(S^n) omega = integral_(S^n) bold(r)^* omega = integral_(D^(n+1)) dif(bold(r)^* omega) = integral_(D^(n+1)) bold(r)^*(dif omega) = 0$, since any $(n+1)$-form on an $n$-dimensional manifold is 0. This contradicts $integral_(S^n) omega != 0$.
+
+=== Brouwer Fixed Point Theorem
+
+Every smooth map $bold(f): D^n -> D^n$ has a fixed point $bold(f)(bold(x)) = bold(x)$.
+
+If not, the ray from $bold(f)(bold(x))$ through $bold(x)$ hits $S^(n-1)$, defining a smooth retraction $bold(r): D^n -> S^(n-1)$ with $bold(r)(bold(x)) = bold(x)$ on $S^(n-1)$, contradicting the No Retraction Theorem.
+
+=== Homotopy
+
+Two smooth maps $bold(f), bold(g): X -> Y$ are _homotopic_ if there is a smooth map $bold(H): X times [0, 1] -> Y$ with $bold(H)(bold(x), 0) = bold(f)(bold(x))$ and $bold(H)(bold(x), 1) = bold(g)(bold(x))$ for all $bold(x) in X$. Intuitively, $bold(H)$ continuously deforms $bold(f)$ into $bold(g)$.
+
+*Homotopy invariance of integrals:* If $X$ is a compact, oriented $k$-dimensional manifold and $bold(f), bold(g): X -> Y$ are homotopic, then for any closed $k$-form $omega$ on $Y$,
+
+$ integral_X bold(f)^* omega = integral_X bold(g)^* omega $
+
+The proof uses Stokes's Theorem on the cylinder $X times [0, 1]$: $integral_(diff(X times [0, 1])) bold(H)^* omega = integral_(X times [0, 1]) bold(H)^*(dif omega) = 0$ since $dif omega = 0$, and the boundary decomposes as $(X times {1})^- union (X times {0})$.
+
+*Application:* the maps $bold(f), bold(g): S^1 -> S^1$ given by $bold(f)(cos t, sin t) = (cos t, sin t)$ and $bold(g)(cos t, sin t) = (cos 2t, sin 2t)$ are _not_ homotopic, since $integral_(S^1) bold(f)^* omega = 2 pi$ but $integral_(S^1) bold(g)^* omega = 4 pi$ for $omega = -y dif x + x dif y$.
+
+=== Simply Connected (Revisited)
+
+$X subset RR^n$ is _simply connected_ if every pair of points can be joined by a path and every map $bold(f): S^1 -> X$ is homotopic to a constant map.
+
+By homotopy invariance, on a simply connected manifold $X$, every closed 1-form is exact: if $bold(f): S^1 -> X$ is any closed curve, then $bold(f)$ is homotopic to a constant $bold(g)$, so $integral_(S^1) bold(f)^* omega = integral_(S^1) bold(g)^* omega = 0$. This globalizes the local result from Section 8.3.
+
+=== Fundamental Theorem of Algebra
+
+Every nonconstant polynomial $p(z) = z^n + a_(n-1) z^(n-1) + dots.c + a_0$ with $a_i in CC$ has a root in $CC$.
+
+The proof uses homotopy and winding numbers. For large $R$, $p$ is homotopic to $g(z) = z^n$ on $diff overline(B)(bold(0), R)$ via $bold(H)(z, t) = z^n + (1-t)(a_(n-1) z^(n-1) + dots.c + a_0)$. Since $integral_(diff overline(B)(bold(0), R)) bold(g)^* omega = 2 pi n != 0$ (where $omega = frac(-y dif x + x dif y, x^2 + y^2)$), homotopy invariance gives $integral_(diff overline(B)(bold(0), R)) p^* omega = 2 pi n$. If $p$ had no root in $B(bold(0), R)$, then $p$ maps $overline(B)(bold(0), R) -> CC - {0}$, and Stokes would give the integral is 0, a contradiction.
+
+=== Counting Roots via Winding Numbers
+
+The pullback formula for products gives: if $f, g$ are smooth maps to $CC - {0}$ and $omega = frac(-y dif x + x dif y, x^2 + y^2)$, then $(f g)^* omega = f^* omega + g^* omega$.
+
+Using this, if $p(z) = c(z - r_1) dots.c (z - r_n)$ and $C = diff D$ avoids all roots, then
+
+$ frac(1, 2 pi) integral_C p^* omega = "number of roots of" p "in" D $
+
+This is a 2-dimensional analogue of Gauss's law: each root contributes winding number 1.
+
+=== Hairy Ball Theorem
+
+Any vector field on $S^(2m)$ (an even-dimensional sphere) must vanish somewhere. A _vector field_ on $S^n$ is a smooth $bold(v): S^n -> RR^(n+1)$ with $bold(x) dot bold(v)(bold(x)) = 0$ (tangency).
+
+In contrast, odd-dimensional spheres always admit nowhere-zero vector fields: on $S^(2m-1) subset RR^(2m)$, the field $bold(v)(x_1, x_2, dots, x_(2m-1), x_(2m)) = (-x_2, x_1, dots, -x_(2m), x_(2m-1))$ works.
+
+For the even case: suppose $bold(v)$ were a nowhere-zero unit vector field on $S^(2m)$. Define a homotopy from the identity to the antipodal map by $bold(H)(bold(x), t) = (cos pi t) bold(x) + (sin pi t) bold(v)(bold(x))$, following semicircles from $bold(x)$ to $-bold(x)$ in the direction of $bold(v)$. But the antipodal map on $S^(2m)$ satisfies $bold(g)^* omega = (-1)^(2m+1) omega = -omega$, so homotopy invariance gives $integral_(S^(2m)) omega = -integral_(S^(2m)) omega$, contradicting $integral_(S^(2m)) omega != 0$.
+
+#line(length: 100%, stroke: 0.5pt + rgb("#100F0F").lighten(88%))
+
+= Chapter 9: Eigenvalues, Eigenvectors, and Applications
+
+The central question: given a linear transformation $T: RR^n -> RR^n$, can we choose coordinates so that the matrix for $T$ is as simple as possible -- ideally diagonal? The tool for this is eigenvalues and eigenvectors.
+
+== 9.1 Linear Transformations and Change of Basis
+
+=== Matrix for $T$ with Respect to a Basis
+
+Let $V$ be a finite-dimensional vector space, $T: V -> V$ a linear transformation, and $cal(B) = {bold(v)_1, dots, bold(v)_n}$ an ordered basis for $V$. Define $a_(i j)$ by $T(bold(v)_j) = sum_(i=1)^n a_(i j) bold(v)_i$. Then $A = [a_(i j)]$ is the _matrix for $T$ with respect to $cal(B)$_, denoted $[T]_cal(B)$. The columns of $A$ are the coordinate vectors of $T(bold(v)_1), dots, T(bold(v)_n)$ with respect to $cal(B)$.
+
+=== Change of Basis
+
+Suppose $T: V -> V$ is a linear transformation with two ordered bases $cal(B) = {bold(v)_1, dots, bold(v)_n}$ and $cal(B)' = {bold(v)'_1, dots, bold(v)'_n}$ for $V$. The _change-of-basis matrix_ $P$ has columns given by the coordinates of the new basis vectors with respect to the old basis. When $cal(B)$ is the standard basis, $P = mat(delim: "[", mid, mid, , mid; bold(v)'_1, bold(v)'_2, dots.c, bold(v)'_n; mid, mid, , mid)$.
+
+The change-of-basis formula relates the matrices for $T$ in the two bases:
+
+$ [T]_(cal(B)') = P^(-1) [T]_cal(B) P $
+
+Two matrices $A$ and $B$ are _similar_ if $B = P^(-1) A P$ for some invertible $P$. Any two matrices representing the same linear map $T: V -> V$ are similar.
+
+=== Properties of Similarity
+
+1. Similar matrices have the same characteristic polynomial, eigenvalues, determinant, trace, and rank
+2. If $B = P^(-1) A P$, then $B^k = P^(-1) A^k P$ for all $k in NN$
+3. Similarity is an equivalence relation: reflexive, symmetric, and transitive
+
+== 9.2 Eigenvalues, Eigenvectors, and Diagonalizability
+
+=== Eigenvalues and Eigenvectors
+
+An eigenvector of a linear transformation is a nonzero vector whose direction is unchanged by $T$ -- it is only scaled.
+
+Let $T: V -> V$ be a linear transformation. A _nonzero_ vector $bold(v) in V$ is an _eigenvector_ of $T$ if there is a scalar $lambda$ so that $T(bold(v)) = lambda bold(v)$. The scalar $lambda$ is the associated _eigenvalue_.
+
+$T$ is _diagonalizable_ if and only if there is a basis for $V$ consisting of eigenvectors of $T$.
+
+=== The Eigenspace
+
+For any scalar $lambda$, the set $bb(E)(lambda) = {bold(v) in V : T(bold(v)) = lambda bold(v)} = ker(T - lambda I)$ is a subspace of $V$. When $dim bb(E)(lambda) > 0$, we call $lambda$ an eigenvalue and $bb(E)(lambda)$ the $lambda$-_eigenspace_.
+
+=== The Characteristic Polynomial
+
+The characteristic polynomial of an $n times n$ matrix $A$ is $p(t) = det(A - t I)$. The eigenvalues of $A$ are the real roots of $p(t)$. Once we know an eigenvalue $lambda$, we find eigenvectors by computing $N(A - lambda I)$.
+
+Similar matrices have the same characteristic polynomial, so the characteristic polynomial of a linear map $T: V -> V$ is well-defined (independent of basis).
+
+=== Shortcuts for the Characteristic Polynomial
+
+For $2 times 2$: $p(t) = t^2 - ("tr" A) t + det A$
+
+For $3 times 3$: $p(t) = -t^3 + ("tr" A) t^2 - (C_(11) + C_(22) + C_(33)) t + det A$, where $C_(i i)$ is the $i i$th cofactor.
+
+In general: $p(t) = (-1)^n t^n + (-1)^(n-1) ("tr" A) t^(n-1) + dots.c + det A$.
+
+The rational roots test is useful: if $p(t)$ has integer coefficients and leading coefficient $plus.minus 1$, then any rational root must be an integer dividing the constant term $det A$.
+
+=== Diagonalizability
+
+Eigenvectors corresponding to distinct eigenvalues are always linearly independent. In particular, if an $n times n$ matrix has $n$ distinct real eigenvalues, it is diagonalizable.
+
+When eigenvalues are repeated, diagonalizability depends on the relationship between algebraic and geometric multiplicity.
+
+The _algebraic multiplicity_ of an eigenvalue $lambda$ is its multiplicity as a root of $p(t)$, i.e. the highest power of $(t - lambda)$ dividing $p(t)$. The _geometric multiplicity_ is $dim bb(E)(lambda) = dim N(A - lambda I)$.
+
+For any eigenvalue $lambda$ with algebraic multiplicity $m$ and geometric multiplicity $d$: $1 <= d <= m$.
+
+$T$ is diagonalizable if and only if, for every eigenvalue $lambda_i$, its geometric multiplicity $d_i$ equals its algebraic multiplicity $m_i$. Equivalently, the sum of the dimensions of all eigenspaces equals $n$.
+
+=== Two Ways Diagonalizability Fails
+
+1. The characteristic polynomial may have complex (non-real) roots. For example, rotations of $RR^2$ through a nonzero, non-$pi$ angle have no real eigenvalues.
+2. The characteristic polynomial may have repeated roots where the eigenspace is too small. For example, $mat(delim: "[", 1, 1; -1, 3)$ has repeated eigenvalue 2 but only a 1-dimensional eigenspace.
+
+== 9.3 Difference Equations and Ordinary Differential Equations
+
+=== Powers of a Diagonalizable Matrix
+
+If $A = P Lambda P^(-1)$ where $Lambda$ is diagonal, then $A^k = P Lambda^k P^(-1)$. Since $Lambda^k = "diag"(lambda_1^k, dots, lambda_n^k)$, this gives an explicit formula for powers of $A$.
+
+=== Difference Equations
+
+A system $bold(x)_(k+1) = A bold(x)_k$ with initial value $bold(x)_0$ has solution $bold(x)_k = A^k bold(x)_0$. If $A$ is diagonalizable with $P^(-1) bold(x)_0 = mat(delim: "[", c_1; dots.v; c_n)$, then
+
+$ bold(x)_k = c_1 lambda_1^k bold(v)_1 + c_2 lambda_2^k bold(v)_2 + dots.c + c_n lambda_n^k bold(v)_n $
+
+Long-term behavior is dominated by the eigenvalue of largest absolute value.
+
+=== The Matrix Exponential
+
+For any $n times n$ matrix $A$, the matrix exponential is defined by
+
+$ e^A = sum_(k=0)^infinity A^k / (k!) = I + A + 1/2 A^2 + 1/6 A^3 + dots.c $
+
+The series always converges. When $A$ is diagonalizable with $A = P Lambda P^(-1)$:
+
+$ e^A = P e^Lambda P^(-1), quad "where" quad e^Lambda = "diag"(e^(lambda_1), dots, e^(lambda_n)) $
+
+Key property: $(e^(t A))' = A e^(t A)$.
+
+=== Systems of Differential Equations
+
+The initial value problem $dot(bold(x))(t) = A bold(x)(t)$, $bold(x)(0) = bold(x)_0$ has the unique solution $bold(x)(t) = e^(t A) bold(x)_0$. This holds for any $n times n$ matrix $A$, not just diagonalizable ones.
+
+When $A$ is diagonalizable, writing $P^(-1) bold(x)_0 = mat(delim: "[", c_1; dots.v; c_n)$ gives the _normal mode decomposition_:
+
+$ bold(x)(t) = c_1 e^(lambda_1 t) bold(v)_1 + c_2 e^(lambda_2 t) bold(v)_2 + dots.c + c_n e^(lambda_n t) bold(v)_n $
+
+The vector functions $e^(lambda_i t) bold(v)_i$ are the _normal modes_ of the system. In the eigenvector coordinate system, the ODE system decouples into $n$ independent scalar equations $dot(y)_i = lambda_i y_i$.
+
+=== Special Cases
+
+For $A = mat(delim: "[", 0, -1; 1, 0)$, the matrix exponential is the rotation matrix: $e^(t A) = mat(delim: "[", cos t, -sin t; sin t, cos t)$.
+
+For a non-diagonalizable matrix like $A = 2I + B$ where $B^2 = 0$: $e^(t A) = e^(2t)(I + t B)$.
+
+=== Higher-Order ODEs
+
+The $n$th order linear ODE with constant coefficients
+
+$ y^((n))(t) + a_(n-1) y^((n-1))(t) + dots.c + a_1 dot(y)(t) + a_0 y(t) = 0 $
+
+can be converted to a first-order system by setting $bold(x)(t) = mat(delim: "[", y(t); dot(y)(t); dots.v; y^((n-1))(t))$. The solution space is an $n$-dimensional subspace of smooth functions, and the initial value problem (specifying $y(0), dot(y)(0), dots, y^((n-1))(0)$) has a unique solution.
+
+=== Flows
+
+Let $bold(F): U -> RR^n$ be a vector field. The _flow_ of $bold(F)$ is the function $phi.alt_t (bold(x)_0)$ solving $dot(bold(x))(t) = bold(F)(bold(x)(t))$, $bold(x)(0) = bold(x)_0$. For the linear case $bold(F)(bold(x)) = A bold(x)$, the flow is $phi.alt_t (bold(x)) = e^(t A) bold(x)$.
+
+The divergence in $n$ dimensions is $"div" bold(F) = sum_(i=1)^n frac(diff F_i, diff x_i)$.
+
+If $Omega$ is a compact region with piecewise smooth boundary and $cal(V)(t) = "vol"(phi.alt_t (Omega))$, then
+
+$ dot(cal(V))(0) = integral_Omega "div" bold(F) dif V $
+
+This says the rate of change of volume under the flow equals the integral of the divergence -- the infinitesimal version of the Divergence Theorem.
+
+== 9.4 The Spectral Theorem
+
+=== Symmetric Matrices
+
+A square matrix $A$ is symmetric when $A = A^T$. More generally, a linear map $T: RR^n -> RR^n$ is _symmetric_ if $T(bold(x)) dot bold(y) = bold(x) dot T(bold(y))$ for all $bold(x), bold(y) in RR^n$. The key identity is $A bold(x) dot bold(y) = bold(x) dot A^T bold(y)$, which simplifies to $A bold(x) dot bold(y) = bold(x) dot A bold(y)$ when $A$ is symmetric.
+
+=== The Spectral Theorem
+
+The spectral theorem guarantees that symmetric matrices are the best-behaved class for diagonalization.
+
+Let $T: RR^n -> RR^n$ be a symmetric linear map. Then:
+
+1. All eigenvalues of $T$ are real.
+2. There is an _orthonormal_ basis for $RR^n$ consisting of eigenvectors of $T$. Equivalently, if $A$ is the standard matrix for $T$, there exists an orthogonal matrix $Q$ so that $Q^(-1) A Q = Q^T A Q = Lambda$ is diagonal.
+
+A crucial step in the proof: if $bold(v)_1$ is an eigenvector with eigenvalue $lambda_1$ and $bold(w) perp bold(v)_1$, then $T(bold(w)) perp bold(v)_1$ as well. This means $T$ maps each eigenspace's orthogonal complement into itself, enabling the inductive argument.
+
+=== Spectral Decomposition
+
+Writing $A = Q Lambda Q^T$ explicitly:
+
+$ A = sum_(i=1)^n lambda_i bold(q)_i bold(q)_i^T $
+
+Multiplying by a symmetric matrix is the same as taking a weighted sum (weighted by eigenvalues) of projections onto the respective eigenspaces.
+
+=== Positive Definiteness
+
+A symmetric matrix $A$ is _positive definite_ if $A bold(x) dot bold(x) > 0$ for all $bold(x) != bold(0)$, _negative definite_ if $A bold(x) dot bold(x) < 0$ for all $bold(x) != bold(0)$, and _positive_ (resp. _negative_) _semidefinite_ if $A bold(x) dot bold(x) >= 0$ (resp. $<= 0$) for all $bold(x)$.
+
+1. $A$ is positive definite iff all eigenvalues are positive
+2. $A$ is negative definite iff all eigenvalues are negative
+3. $A$ is positive semidefinite iff all eigenvalues are nonnegative
+4. If $A$ and $B$ are positive (negative) definite, so is $A + B$
+5. If $C$ is any $m times n$ matrix of rank $n$, then $C^T C$ is positive definite
+6. $A$ is nonsingular iff every eigenvalue of $A^T A$ is positive
+7. The operator norm satisfies $norm(A) = sqrt(lambda)$, where $lambda$ is the largest eigenvalue of $A^T A$
+
+=== Conics and Quadric Surfaces
+
+Any quadratic form $bold(x)^T A bold(x)$ with $A$ symmetric can be simplified by the substitution $bold(y) = Q^T bold(x)$, where $Q$ diagonalizes $A$:
+
+$ bold(x)^T A bold(x) = bold(y)^T Lambda bold(y) = lambda_1 y_1^2 + lambda_2 y_2^2 + dots.c + lambda_n y_n^2 $
+
+This eliminates all cross-terms and reduces conic sections and quadric surfaces to standard form. The new axes are aligned with the eigenvectors of $A$.
+
+1. In $RR^2$: if both eigenvalues have the same sign, we get an ellipse; if opposite signs, a hyperbola; if one is zero, a parabola (when linear terms are present)
+2. In $RR^3$: ellipsoids, hyperboloids of 1 or 2 sheets, cones, and (when $A$ is singular and linear terms are present) paraboloids
+3. When linear terms $bold(b)^T bold(x)$ are present along with the quadratic, first diagonalize the quadratic part, then complete the square in the new coordinates
