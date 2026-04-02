@@ -9,18 +9,13 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0-rc2",
+    "@myriaddreamin/typst.ts": "^0.7.0-rc2",
     "@phosphor-icons/react": "^2.1.10",
-    "@types/katex": "^0.16.8",
     "clsx": "^2.1.1",
-    "gray-matter": "^4.0.3",
-    "katex": "^0.16.44",
     "next": "16.2.2",
-    "next-mdx-remote": "^6.0.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "react-katex": "^3.1.0",
-    "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {
