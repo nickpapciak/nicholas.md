@@ -21,5 +21,6 @@
   show heading.where(level: 1): set text(size: 13pt, weight: 600)
   show heading.where(level: 1): it => { v(12pt); it; v(4pt) }
   show: thmrules.with(qed-symbol: $square.filled$)
+  show link: it => underline(text(fill: accent, it))
   body
 }

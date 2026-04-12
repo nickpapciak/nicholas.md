@@ -33,7 +33,7 @@ export default function Links() {
           className="group"
         >
           <div className="font-medium">{link.label}</div>
-          <div className="text-muted group-hover:text-accent transition-colors">
+          <div className="text-accent underline">
             {link.value}
           </div>
         </a>
