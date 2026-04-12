@@ -217,3 +217,33 @@ a {
   fill: var(--proof-bg) !important;
 }
 
+.svg-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.svg-skeleton-bar {
+  height: 0.85rem;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--fg) 8%, var(--bg));
+  animation: svg-skeleton-pulse 1.4s ease-in-out infinite;
+}
+
+.svg-skeleton-bar:nth-child(3n) {
+  animation-delay: 0.15s;
+}
+.svg-skeleton-bar:nth-child(3n + 1) {
+  animation-delay: 0.3s;
+}
+
+@keyframes svg-skeleton-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
