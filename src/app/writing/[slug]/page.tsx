@@ -15,6 +15,10 @@ export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
 }
 
+// Only the slugs from generateStaticParams (drafts excluded) are served; any
+// other slug 404s instead of being rendered on demand.
+export const dynamicParams = false;
+
 function compileTypst(filePath: string): string {
   const compiler = NodeCompiler.create({
     workspace: path.join(process.cwd()),
@@ -24,6 +28,10 @@ function compileTypst(filePath: string): string {
   // inherit from CSS so theme colors apply.
   svg = svg.replaceAll('fill="#000"', 'fill="currentColor"');
   svg = svg.replaceAll('stroke="#000"', 'stroke="currentColor"');
+  // The Node compiler injects `onclick="handleTypstLocation(...)"` on
+  // footnote anchors, but the handler isn't defined on the page, so clicks
+  // throw. Strip it; the anchor's href still works for intra-doc jumps.
+  svg = svg.replace(/\sonclick="[^"]*"/g, "");
   return svg;
 }
 
@@ -88,6 +96,7 @@ export default async function Post(props: {
   } catch {
     notFound();
   }
+  if (meta.draft) notFound();
 
   const filePath = getPostPath(slug);
   const svg = compileTypst(filePath);
