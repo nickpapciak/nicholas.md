@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className="h-screen overflow-hidden flex flex-col font-mono">
         <RandomFavicon />
         <Nav />
-        <main className="flex-1 overflow-y-auto overscroll-y-none flex justify-center [align-items:safe_center] px-8 pb-16">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden overscroll-y-none flex justify-center [align-items:safe_center] px-8 pb-16">
           {children}
         </main>
         <Footer />
