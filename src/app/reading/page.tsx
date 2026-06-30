@@ -40,6 +40,9 @@ const shelves: { label: string; books: Book[] }[] = [
         author: "Walter Isaacson",
         coverSrc: "/books/einstein.jpg",
         coverClass: "bg-[#c9bca3]",
+        quotes: [
+          "“In teaching history,” he replied, “there should be extensive discussion of personalities who benefited mankind through independence of character and judgment.” Einstein fits into that category.",
+        ],
       },
     ],
   },
