@@ -36,6 +36,7 @@ export default function Footer() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
       if (e.key === "ArrowLeft" || e.key === "h") navigate(-1);
       if (e.key === "ArrowRight" || e.key === "l") navigate(1);
       if (e.key === "t") toggleTheme();
