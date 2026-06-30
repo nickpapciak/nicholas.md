@@ -21,12 +21,6 @@ const shelves: { label: string; books: Book[] }[] = [
     label: "reading",
     books: [
       {
-        title: "The Heart of Innovation",
-        author: "Chanoff, Furst, Sabbah & Wegman",
-        coverSrc: "/books/heart-of-innovation.jpg",
-        coverClass: "bg-[#f1f0ed]",
-      },
-      {
         title: "The Story of Philosophy",
         author: "Will Durant",
         coverSrc: "/books/story-of-philosophy.jpg",
@@ -49,6 +43,12 @@ const shelves: { label: string; books: Book[] }[] = [
   {
     label: "read",
     books: [
+      {
+        title: "The Heart of Innovation",
+        author: "Chanoff, Furst, Sabbah & Wegman",
+        coverSrc: "/books/heart-of-innovation.jpg",
+        coverClass: "bg-[#f1f0ed]",
+      },
       {
         title: "The Brothers Karamazov",
         author: "Fyodor Dostoevsky",
