@@ -27,10 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body className="min-h-screen flex flex-col font-mono">
+      <body className="h-screen overflow-hidden flex flex-col font-mono">
         <RandomFavicon />
         <Nav />
-        <main className="flex-1 flex items-center justify-center px-8 pb-16">
+        <main className="flex-1 overflow-y-auto overscroll-none flex justify-center [align-items:safe_center] px-8 pb-16">
           {children}
         </main>
         <Footer />
