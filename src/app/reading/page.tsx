@@ -31,6 +31,9 @@ const shelves: { label: string; books: Book[] }[] = [
         author: "Will Durant",
         coverSrc: "/books/story-of-philosophy.jpg",
         coverClass: "bg-[#efe8d8]",
+        quotes: [
+          "Poor Aristotelian God!—he is a roi fainéant, a do-nothing king; “the king reigns, but he does not rule.” No wonder the British like Aristotle; his God is obviously copied from their king.",
+        ],
       },
       {
         title: "Einstein: His Life and Universe",
