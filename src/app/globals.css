@@ -247,3 +247,18 @@ a {
   }
 }
 
+/* Dim and blur the other books while one is hovered/focused. */
+@media (hover: hover) and (pointer: fine) {
+  .books-interaction:has(.book-hitbox:hover) .book-item:not(:has(.book-hitbox:hover)),
+  .books-interaction:has(.book-hitbox:focus-visible) .book-item:not(:has(.book-hitbox:focus-visible)) {
+    filter: blur(1px);
+    opacity: 0.6;
+    transform: scale(0.99);
+  }
+
+  .book-item:has(.book-hitbox:hover),
+  .book-item:has(.book-hitbox:focus-visible) {
+    z-index: 40;
+  }
+}
+

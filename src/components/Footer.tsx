@@ -45,7 +45,7 @@ export default function Footer() {
   }, [navigate, toggleTheme]);
 
   return (
-    <footer className="px-8 py-4 text-sm flex items-center justify-between">
+    <footer className="fixed bottom-0 left-0 right-0 z-50 bg-bg px-8 py-4 text-sm flex items-center justify-between">
       <span className="text-muted">v0.0.1</span>
       <div className="flex gap-6 text-muted">
         {routes.includes(pathname) && (

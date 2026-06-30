@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col font-mono">
         <RandomFavicon />
         <Nav />
-        <main className="flex-1 flex items-center justify-center px-8">
+        <main className="flex-1 flex items-center justify-center px-8 pb-16">
           {children}
         </main>
         <Footer />
