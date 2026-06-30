@@ -55,7 +55,7 @@ const shelves: { label: string; books: Book[] }[] = [
         coverSrc: "/books/brothers-karamazov.jpg",
         coverClass: "bg-[#4a5040]",
         quotes: [
-          "You did not come down from the cross when they shouted to you, mocking and reviling you: “Come down from the cross and we will believe that it is you.” You did not come down because, again, you did not want to enslave man by a miracle and thirsted for faith that is free, not miraculous. You thirsted for love that is free, and not for the servile raptures of a slave before a power that has left him permanently terrified.",
+          "You did not come down because you did not want to enslave man by a miracle and thirsted for faith that is free, not miraculous. You thirsted for love that is free, and not for the servile raptures of a slave before a power that has left him permanently terrified.",
         ],
       },
     ],
